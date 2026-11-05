@@ -4,56 +4,54 @@ export function AboutEducation() {
   return (
     <section id="about" className="py-24 sm:py-36 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto w-full">
       {/* Section Rail Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-16 border-b border-[#1C1915]/10 pb-6">
-        <div className="flex items-center gap-3 font-mono text-xs text-[#8A4B2A] uppercase tracking-widest">
-          <span>02</span>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[#ECE6D6]/12 pb-6 mb-16">
+        <div className="flex items-center gap-3 font-mono text-xs text-[#FF5A2C] uppercase tracking-widest">
+          <span>03</span>
           <span>/</span>
           <span>About & Education</span>
         </div>
-        <p className="font-mono text-xs text-[#6F675B] mt-2 sm:mt-0">
-          ACADEMIC FOUNDATION & PHILOSOPHY
+        <p className="font-mono text-xs text-[#9DB59A] mt-2 sm:mt-0">
+          ACADEMIC TIMELINE & PHILOSOPHY
         </p>
       </div>
 
-      {/* Two-Column Editorial Layout (No boxes!) */}
+      {/* Asymmetric Two-Column Typographic Layout (No boxes!) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-        {/* Left Column: Big Italic Pull-Quote */}
-        <div className="lg:col-span-6 lg:sticky lg:top-28">
-          <blockquote className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal italic leading-[1.18] text-[#1C1915] tracking-tight">
-            “Approaching computer science through mathematical invariants, deterministic logic, and software that remains provably reliable under extreme boundary constraints.”
-          </blockquote>
-          <p className="font-sans text-sm text-[#6F675B] mt-6 font-light">
-            Undergraduate software engineer based at VIT-AP University.
+        {/* Left: Short Statement */}
+        <div className="lg:col-span-5 space-y-4">
+          <h3 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold text-[#ECE6D6] leading-[1.08] tracking-tight">
+            Grounded in runtime determinism and invariant proofs.
+          </h3>
+          <p className="font-text text-base text-[#ECE6D6]/70 font-light leading-relaxed">
+            I study computer science by taking systems apart: analyzing compiler ASTs, measuring CPU cache behavior, and building client-side tools that preserve total privacy.
           </p>
         </div>
 
-        {/* Right Column: Clean Timeline Set as Typography with Hairlines */}
-        <div className="lg:col-span-6 space-y-12">
-          <div className="space-y-10">
-            {PORTFOLIO_CONFIG.education.map((item, idx) => (
-              <div
-                key={idx}
-                className="border-t border-[#1C1915]/14 pt-8"
-              >
-                <div className="flex justify-between items-baseline mb-3 font-mono text-xs text-[#6F675B]">
-                  <span>{item.period}</span>
-                  <span className="text-[#8A4B2A]">{item.discipline}</span>
-                </div>
+        {/* Right: Vertical Timeline with Line */}
+        <div className="lg:col-span-7 relative pl-8 border-l border-[#ECE6D6]/14 space-y-12">
+          {PORTFOLIO_CONFIG.education.map((item, idx) => (
+            <div key={idx} className="relative space-y-2">
+              {/* Timeline marker node */}
+              <div className="absolute -left-[37px] top-1.5 w-3 h-3 rounded-full bg-[#0E1411] border-2 border-[#FF5A2C]" />
 
-                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1C1915] mb-1">
-                  {item.institution}
-                </h3>
-
-                <p className="font-sans text-sm sm:text-base text-[#1C1915]/90 font-medium mb-3">
-                  {item.degree}
-                </p>
-
-                <p className="font-sans text-sm text-[#6F675B] font-light leading-relaxed">
-                  {item.note}
-                </p>
+              <div className="flex justify-between items-baseline font-mono text-xs">
+                <span className="text-[#FF5A2C] font-semibold">{item.period}</span>
+                <span className="text-[#9DB59A]">{item.discipline}</span>
               </div>
-            ))}
-          </div>
+
+              <h4 className="font-display text-xl sm:text-2xl font-bold text-[#ECE6D6]">
+                {item.institution}
+              </h4>
+
+              <p className="font-text text-sm font-medium text-[#ECE6D6]/90">
+                {item.degree}
+              </p>
+
+              <p className="font-text text-sm text-[#ECE6D6]/60 font-light leading-relaxed">
+                {item.note}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 import { Preloader } from './components/Preloader'
-import { Cursor } from './components/Cursor'
+import { DogCursor } from './components/DogCursor'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { SelectedWork } from './components/SelectedWork'
@@ -11,58 +11,63 @@ import { SkillsTypography } from './components/SkillsTypography'
 import { Footer } from './components/Footer'
 
 export function App() {
-  const [cursorText, setCursorText] = useState<string | null>(null)
   const [preloaderFinished, setPreloaderFinished] = useState(false)
+  const [dogEnabled, setDogEnabled] = useState(true)
 
-  // Initialize Lenis smooth inertial scrolling
+  // Initialize Lenis smooth scroll
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
 
-    let animationFrameId: number
-
+    let rafId: number
     function raf(time: number) {
       lenis.raf(time)
-      animationFrameId = requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-
-    animationFrameId = requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
     return () => {
-      cancelAnimationFrame(animationFrameId)
+      cancelAnimationFrame(rafId)
       lenis.destroy()
     }
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#EFE8DC] text-[#1C1915] relative selection:bg-[#8A4B2A] selection:text-[#EFE8DC]">
-      {/* Editorial Preloader */}
+    <div className="min-h-screen bg-[#0E1411] text-[#ECE6D6] relative selection:bg-[#FF5A2C] selection:text-[#0E1411]">
+      {/* Short preloader */}
       <Preloader onComplete={() => setPreloaderFinished(true)} />
 
-      {/* Floating Precision Cursor */}
-      <Cursor cursorText={cursorText} />
+      {/* The Dog Cursor Signature */}
+      <DogCursor enabled={dogEnabled} />
 
       {/* Fixed Minimal Header */}
       <Navbar />
 
-      {/* Editorial Body Spread */}
-      <main className={`transition-opacity duration-700 ${preloaderFinished ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Main Content */}
+      <main
+        className={`transition-opacity duration-700 ${
+          preloaderFinished ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         <Hero />
-        <SelectedWork onCursorChange={setCursorText} />
+        <SelectedWork />
         <AboutEducation />
         <Interests />
         <SkillsTypography />
       </main>
 
-      {/* Contact & Footer */}
-      <Footer />
+      {/* Footer & Dog Toggle */}
+      <Footer
+        dogEnabled={dogEnabled}
+        onToggleDog={() => setDogEnabled(!dogEnabled)}
+      />
     </div>
   )
 }

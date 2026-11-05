@@ -2,17 +2,21 @@
 
 @layer base {
   :root {
-    --bg-paper: #EFE8DC;
-    --bg-secondary: #E6DDCD;
-    --ink: #1C1915;
-    --ink-muted: #6F675B;
-    --hairline: rgba(28, 25, 21, 0.14);
-    --hairline-strong: rgba(28, 25, 21, 0.28);
-    --accent: #8A4B2A;
+    --ground: #0E1411;
+    --parchment: #ECE6D6;
+    --vermilion: #FF5A2C;
+    --sage: #9DB59A;
     
-    --font-serif: 'Instrument Serif', Georgia, serif;
-    --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --scene-repopilot: #0B1220;
+    --scene-hireflow: #1B2A1F;
+    --scene-unilang: #3A1F18;
+
+    --hairline: rgba(236, 230, 214, 0.12);
+    --hairline-strong: rgba(236, 230, 214, 0.24);
+
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-text: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, monospace;
   }
 
   * {
@@ -20,9 +24,9 @@
   }
 
   html {
-    background-color: var(--bg-paper);
-    color: var(--ink);
-    font-family: var(--font-sans);
+    background-color: var(--ground);
+    color: var(--parchment);
+    font-family: var(--font-text);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -30,124 +34,106 @@
   }
 
   body {
-    background-color: var(--bg-paper);
-    color: var(--ink);
+    background-color: var(--ground);
+    color: var(--parchment);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
   }
 
-  /* Accessible focus styling */
   a:focus-visible, button:focus-visible {
-    outline: 1.5px solid var(--accent);
+    outline: 2px solid var(--vermilion);
     outline-offset: 3px;
   }
 }
 
-.font-serif {
-  font-family: var(--font-serif);
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "ss02";
 }
 
-.font-sans {
-  font-family: var(--font-sans);
+.font-text {
+  font-family: var(--font-text);
 }
 
 .font-mono {
   font-family: var(--font-mono);
+  letter-spacing: 0.08em;
 }
 
-/* Hairline borders */
-.border-hairline {
-  border-color: rgba(28, 25, 21, 0.14);
+/* Hairline utilities */
+.hairline-b {
+  border-bottom: 1px solid var(--hairline);
 }
 
-.border-t-hairline {
-  border-top: 1px solid rgba(28, 25, 21, 0.14);
+.hairline-t {
+  border-top: 1px solid var(--hairline);
 }
 
-.border-b-hairline {
-  border-bottom: 1px solid rgba(28, 25, 21, 0.14);
+.hairline-l {
+  border-left: 1px solid var(--hairline);
 }
 
-.border-l-hairline {
-  border-left: 1px solid rgba(28, 25, 21, 0.14);
+.hairline-r {
+  border-right: 1px solid var(--hairline);
 }
 
-.border-r-hairline {
-  border-right: 1px solid rgba(28, 25, 21, 0.14);
-}
-
-/* Animated editorial underlines */
-.editorial-link {
+/* Subtle vermilion link underline draw */
+.vermilion-link {
   position: relative;
   display: inline-block;
-  color: var(--ink);
+  color: var(--parchment);
   text-decoration: none;
-  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.25s ease;
 }
 
-.editorial-link::after {
+.vermilion-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 1px;
-  background-color: var(--ink);
+  height: 1.5px;
+  background-color: var(--vermilion);
+  transform: scaleX(0);
   transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vermilion-link:hover {
+  color: var(--vermilion);
+}
+
+.vermilion-link:hover::after {
   transform: scaleX(1);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
-}
-
-.editorial-link:hover {
-  color: var(--accent);
-}
-
-.editorial-link:hover::after {
-  background-color: var(--accent);
   transform-origin: left;
 }
 
-/* Custom scrollbars that feel like paper */
+/* Variable font shift utility on hover */
+.bricolage-shift {
+  transition: font-weight 0.25s ease, font-stretch 0.25s ease;
+}
+.bricolage-shift:hover {
+  font-weight: 700;
+  font-stretch: 105%;
+}
+
+/* Arch mask for photo */
+.photo-arch {
+  clip-path: inset(0 0 0 0 round 170px 170px 0 0);
+}
+
+/* Scrollbars */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #EFE8DC;
+  background: var(--ground);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(28, 25, 21, 0.18);
+  background: rgba(236, 230, 214, 0.15);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(28, 25, 21, 0.35);
-}
-
-/* Horizontal typographic marquee keyframes */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes marqueeReverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-
-.animate-marquee-reverse {
-  display: flex;
-  width: max-content;
-  animation: marqueeReverse 42s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee,
-  .animate-marquee-reverse {
-    animation: none;
-  }
+  background: var(--vermilion);
 }

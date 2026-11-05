@@ -1,95 +1,107 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { PORTFOLIO_CONFIG } from '../data/config'
 
 export function Interests() {
   const { competitiveProgramming, highFrequencyTrading } = PORTFOLIO_CONFIG.passions
-
-  // Subtle simulated tick feed numbers (11px, muted, single thin line, no panel)
-  const [ticks, setTicks] = useState([
-    { sym: 'NIFTY', bid: '24,310.50', ask: '24,310.75', delta: '+0.15%' },
-    { sym: 'ORDER_L3', lat: '380ns', depth: '4,200', jitter: '< 12ns' },
-    { sym: 'BANKNIFTY', bid: '52,140.00', ask: '52,140.20', delta: '+0.08%' },
-    { sym: 'MATCH_ENG', status: 'DETERMINISTIC', q: 'LOCK_FREE_RING' },
-  ])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTicks((prev) => [
-        ...prev.slice(1),
-        {
-          sym: 'TICK_' + Math.floor(1000 + Math.random() * 9000),
-          lat: `${Math.floor(340 + Math.random() * 70)}ns`,
-          depth: `${Math.floor(2000 + Math.random() * 5000)}`,
-          jitter: `< ${Math.floor(8 + Math.random() * 6)}ns`,
-        },
-      ])
-    }, 2400)
-    return () => clearInterval(timer)
-  }, [])
+  const [hoveredSide, setHoveredSide] = useState<'cp' | 'hft' | null>(null)
 
   return (
     <section id="interests" className="py-20 sm:py-28 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto w-full">
       {/* Section Rail Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-12 border-b border-[#1C1915]/10 pb-6">
-        <div className="flex items-center gap-3 font-mono text-xs text-[#8A4B2A] uppercase tracking-widest">
-          <span>03</span>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[#ECE6D6]/12 pb-6 mb-16">
+        <div className="flex items-center gap-3 font-mono text-xs text-[#FF5A2C] uppercase tracking-widest">
+          <span>04</span>
           <span>/</span>
-          <span>Interests</span>
+          <span>Dual Passions</span>
         </div>
-        <p className="font-mono text-xs text-[#6F675B] mt-2 sm:mt-0">
-          ALGORITHMS & LOW-LATENCY SYSTEMS
+        <p className="font-mono text-xs text-[#9DB59A] mt-2 sm:mt-0">
+          SUB-MICROSECOND LATENCY & ALGORITHMIC PROOF
         </p>
       </div>
 
-      {/* Two Stacked Beats (Not boxes!) */}
-      <div className="space-y-12 max-w-4xl">
-        {/* Beat 1: Competitive Programming */}
-        <div className="space-y-4">
-          <span className="font-mono text-xs text-[#6F675B] uppercase tracking-wider block">
-            01 — Algorithmic Problem Solving
-          </span>
-          <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C1915] leading-tight">
-            The discipline of <span className="italic text-[#8A4B2A]">optimal solutions</span> under tight asymptotic constraints.
+      {/* Two Side-By-Side Bold Statements (Under one viewport, NO panels!) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        {/* Left: Competitive Programming */}
+        <div
+          onMouseEnter={() => setHoveredSide('cp')}
+          onMouseLeave={() => setHoveredSide(null)}
+          className="space-y-6 group"
+        >
+          <div className="flex items-center justify-between font-mono text-xs text-[#9DB59A]">
+            <span>01 / ALGORITHMIC RIGOR</span>
+            <span className="text-[#FF5A2C]">O(1) → O(N log N)</span>
+          </div>
+
+          <h3 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold text-[#ECE6D6] leading-[1.08] tracking-tight group-hover:text-[#FF5A2C] transition-colors">
+            {competitiveProgramming.statement}
           </h3>
-          <p className="font-sans text-base sm:text-lg text-[#6F675B] font-light leading-relaxed max-w-2xl">
+
+          <p className="font-text text-base text-[#ECE6D6]/70 font-light leading-relaxed">
             {competitiveProgramming.prose}
           </p>
+
+          {/* Big-O Curve Visual that redraws on hover */}
+          <div className="pt-4 flex items-center gap-4">
+            <svg viewBox="0 0 160 50" className="w-40 h-14 overflow-visible stroke-[#ECE6D6]/40 group-hover:stroke-[#FF5A2C] transition-colors">
+              {/* Axis */}
+              <line x1="0" y1="45" x2="160" y2="45" strokeWidth="1" strokeDasharray="2 2" />
+              {/* O(log N) curve */}
+              <path d="M 0 45 Q 40 25, 160 18" fill="none" strokeWidth="1.5" stroke="#9DB59A" />
+              {/* O(N log N) curve */}
+              <motion.path
+                d="M 0 45 Q 60 40, 160 5"
+                fill="none"
+                strokeWidth="2"
+                initial={{ pathLength: 0.8 }}
+                animate={{ pathLength: hoveredSide === 'cp' ? 1 : 0.8 }}
+                transition={{ duration: 0.6 }}
+              />
+            </svg>
+            <span className="font-mono text-[11px] text-[#ECE6D6]/50">
+              Big-O Growth Bound
+            </span>
+          </div>
         </div>
 
-        {/* Hairline Divider between beats */}
-        <div className="w-full h-[1px] bg-[#1C1915]/14" />
+        {/* Right: High-Frequency Trading */}
+        <div
+          onMouseEnter={() => setHoveredSide('hft')}
+          onMouseLeave={() => setHoveredSide(null)}
+          className="space-y-6 group"
+        >
+          <div className="flex items-center justify-between font-mono text-xs text-[#9DB59A]">
+            <span>02 / MARKET MICROSTRUCTURE</span>
+            <span className="text-[#FF5A2C]">&lt; 380ns Execution</span>
+          </div>
 
-        {/* Beat 2: High-Frequency Trading */}
-        <div className="space-y-4">
-          <span className="font-mono text-xs text-[#6F675B] uppercase tracking-wider block">
-            02 — Market Microstructure
-          </span>
-          <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C1915] leading-tight">
-            A fascination with <span className="italic text-[#8A4B2A]">microsecond execution</span> and low-latency order matching.
+          <h3 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold text-[#ECE6D6] leading-[1.08] tracking-tight group-hover:text-[#FF5A2C] transition-colors">
+            {highFrequencyTrading.statement}
           </h3>
-          <p className="font-sans text-base sm:text-lg text-[#6F675B] font-light leading-relaxed max-w-2xl">
+
+          <p className="font-text text-base text-[#ECE6D6]/70 font-light leading-relaxed">
             {highFrequencyTrading.prose}
           </p>
-        </div>
-      </div>
 
-      {/* Delicate Typographic Ticker: Single thin line, 11px, muted, NO panel */}
-      <div className="mt-14 pt-4 border-t border-[#1C1915]/10 overflow-hidden text-[11px] font-mono text-[#6F675B] select-none flex items-center gap-8">
-        <span className="text-[#8A4B2A] shrink-0 uppercase tracking-widest text-[10px]">
-          TICKER STREAM
-        </span>
-        <div className="flex items-center gap-8 whitespace-nowrap overflow-x-hidden opacity-75">
-          {ticks.map((t, idx) => (
-            <span key={idx} className="flex items-center gap-2">
-              <span className="text-[#1C1915] font-semibold">{t.sym}</span>
-              {t.bid && <span>BID {t.bid}</span>}
-              {t.ask && <span>ASK {t.ask}</span>}
-              {t.lat && <span className="text-[#8A4B2A]">LATENCY {t.lat}</span>}
-              {t.jitter && <span>JITTER {t.jitter}</span>}
-              {t.status && <span>CORE {t.status}</span>}
-              <span className="text-[#1C1915]/20">/</span>
+          {/* Latency line chart visual that animates on hover */}
+          <div className="pt-4 flex items-center gap-4">
+            <svg viewBox="0 0 160 50" className="w-40 h-14 overflow-visible stroke-[#ECE6D6]/40 group-hover:stroke-[#FF5A2C] transition-colors">
+              {/* Baseline */}
+              <line x1="0" y1="45" x2="160" y2="45" strokeWidth="1" strokeDasharray="2 2" />
+              {/* Jitter line */}
+              <motion.path
+                d="M 0 35 L 25 32 L 50 36 L 75 14 L 100 34 L 125 31 L 160 33"
+                fill="none"
+                strokeWidth="1.8"
+                initial={{ pathLength: 0.85 }}
+                animate={{ pathLength: hoveredSide === 'hft' ? 1 : 0.85 }}
+                transition={{ duration: 0.6 }}
+              />
+            </svg>
+            <span className="font-mono text-[11px] text-[#ECE6D6]/50">
+              Deterministic Nanosecond Jitter
             </span>
-          ))}
+          </div>
         </div>
       </div>
     </section>

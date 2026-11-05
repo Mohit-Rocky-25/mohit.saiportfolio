@@ -2,29 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231C1915'/><text x='50%' y='62%' dominant-baseline='central' text-anchor='middle' font-family='serif' font-style='italic' font-size='60' fill='%23EFE8DC'>M</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1411'/><text x='50%' y='65%' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='56' fill='%23FF5A2C'>M</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Y. Mohit Sai — Portfolio</title>
-    <meta name="description" content="Portfolio of Y. Mohit Sai. Computer Science undergraduate at VIT-AP University. Systems, algorithms, and low-latency architecture." />
+    <title>Y. Mohit Sai — Creative Developer & Systems Engineer</title>
+    <meta name="description" content="Portfolio of Y. Mohit Sai. Computer Science undergraduate at VIT-AP. Competitive programming, low-latency systems, and deterministic software." />
     
-    <!-- Preconnect to Google Fonts -->
+    <!-- Preload portrait photo -->
+    <link rel="preload" as="image" href="/images/mohit.webp" type="image/webp" />
+
+    <!-- Google Fonts: Bricolage Grotesque, Instrument Sans, Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#EFE8DC] text-[#1C1915] antialiased selection:bg-[#8A4B2A] selection:text-[#EFE8DC]">
-    <!-- Subtle fixed SVG paper grain noise overlay (3 to 4% opacity) -->
-    <div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.038] mix-blend-multiply" aria-hidden="true">
+  <body class="bg-[#0E1411] text-[#ECE6D6] antialiased selection:bg-[#FF5A2C] selection:text-[#0E1411]">
+    <!-- Subtle film grain overlay at 3% opacity -->
+    <div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.03] mix-blend-overlay" aria-hidden="true">
       <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <filter id="noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+        <filter id="filmGrain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
           <feColorMatrix type="saturate" values="0" />
         </filter>
-        <rect width="100%" height="100%" filter="url(#noise)" />
+        <rect width="100%" height="100%" filter="url(#filmGrain)" />
       </svg>
     </div>
 
-    <div id="root"></div>
+    <!-- Persistent Paw Print Canvas beneath content -->
+    <canvas id="paw-canvas" class="fixed inset-0 pointer-events-none z-[5]"></canvas>
+
+    <div id="root" class="relative z-10"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
