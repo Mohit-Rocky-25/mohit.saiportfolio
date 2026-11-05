@@ -25,6 +25,7 @@ export function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
+    ;(window as unknown as { lenis?: Lenis }).lenis = lenis
 
     let rafId: number
     function raf(time: number) {
@@ -36,6 +37,7 @@ export function App() {
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      delete (window as unknown as { lenis?: Lenis }).lenis
     }
   }, [])
 

@@ -2,7 +2,11 @@
 
 @layer base {
   :root {
+    --nav-h: 72px;
     --ground: #EAE2D1;
+    --scene-bg: #EAE2D1;
+    --paw: rgba(180, 68, 31, 0.5);
+    
     --ink: #1F1A14;
     --muted: #6B6254;
     --terracotta: #B4441F;
@@ -40,6 +44,11 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+  }
+
+  /* Anchor scroll offset */
+  section, [id] {
+    scroll-margin-top: var(--nav-h);
   }
 
   a:focus-visible, button:focus-visible {
@@ -116,11 +125,6 @@
 .bricolage-shift:hover {
   font-weight: 700;
   font-stretch: 105%;
-}
-
-/* Arch mask for photo */
-.photo-arch {
-  clip-path: inset(0 0 0 0 round 170px 170px 0 0);
 }
 
 /* Marquee keyframes */

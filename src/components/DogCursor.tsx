@@ -144,7 +144,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
       const isTouch = window.matchMedia('(pointer: coarse)').matches
       const now = Date.now()
 
-      // Touch wandering logic
       if (isTouch) {
         if (Math.hypot(targetRef.current.x - posRef.current.x, targetRef.current.y - posRef.current.y) < 20) {
           targetRef.current = {
@@ -232,7 +231,7 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         x: pawX,
         y: pawY,
         angle: angle,
-        opacity: isRunning ? 0.4 : 0.5, // 50% opacity per prompt
+        opacity: isRunning ? 0.4 : 0.5,
         scale: isRunning ? 1.05 : 0.95,
         born: Date.now(),
         isLeft,
@@ -251,6 +250,9 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+      // Read current paw color variable from CSS
+      const pawStyle = getComputedStyle(document.documentElement).getPropertyValue('--paw').trim() || 'rgba(180, 68, 31, 0.5)'
+
       pawPrintsRef.current = pawPrintsRef.current.filter((print) => {
         const age = (now - print.born) / 1000
         if (age > 2.2) return false
@@ -263,8 +265,8 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         ctx.rotate(print.angle + Math.PI / 2)
         ctx.scale(scale, scale)
 
-        // Deep terracotta paw prints (#B4441F) at ~50% opacity
-        ctx.fillStyle = `rgba(180, 68, 31, ${alpha})`
+        // Dynamic --paw color (terracotta 50% or ink 35%)
+        ctx.fillStyle = pawStyle.replace(/[\d\.]+\)$/, `${alpha})`)
 
         // Main pad
         ctx.beginPath()
@@ -303,40 +305,50 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
           facingLeft ? 'scale-x-[-1]' : 'scale-x-[1]'
         }`}
       >
-        {/* Pixel Art SVG Dog (40x34px) */}
+        {/* Pixel Art Dog (40x34px) - Warm Ink-Brown (#2B211A) with Cream Patch & Outline (#F6F0E3) */}
         <svg
           width="40"
           height="34"
           viewBox="0 0 20 17"
-          className="overflow-visible"
+          className="overflow-visible filter drop-shadow-[0_2px_4px_rgba(31,26,20,0.35)]"
           style={{ imageRendering: 'pixelated' }}
         >
-          {/* Shadow */}
-          <ellipse cx="10" cy="16" rx="6.5" ry="1.5" fill="rgba(31, 26, 20, 0.22)" />
+          {/* 1px Cream Outline around the sprite (#F6F0E3 at 90%) */}
+          <g stroke="rgba(246, 240, 227, 0.9)" strokeWidth="0.8" strokeLinejoin="round">
+            <rect x="5" y="7" width="9" height="6" fill="#2B211A" rx="1" />
+            <rect x="11" y="4" width="6" height="5" fill="#2B211A" rx="1" />
+          </g>
 
-          {/* Body (linen #EAE2D1) */}
-          <rect x="5" y="7" width="9" height="6" fill="#ECE6D6" rx="1" />
+          {/* Body (Dark Warm Ink-Brown #2B211A) */}
+          <rect x="5" y="7" width="9" height="6" fill="#2B211A" rx="1" />
 
-          {/* Darker Patch (#A39B8B) */}
-          <rect x="7" y="8" width="3" height="3" fill="#A39B8B" />
+          {/* Cream Chest / Ear Patch (#F6F0E3) */}
+          <rect x="11" y="8" width="3" height="4" fill="#F6F0E3" />
+          <rect x="7" y="8" width="3" height="3" fill="#3D3027" />
 
           {/* Head & Snout */}
-          <rect x="11" y="4" width="6" height="5" fill="#ECE6D6" rx="1" />
-          <rect x="15" y="6" width="3" height="3" fill="#DFD6C3" />
+          <rect x="11" y="4" width="6" height="5" fill="#2B211A" rx="1" />
+          <rect x="15" y="6" width="3" height="3" fill="#3D3027" />
           <rect x="17" y="6" width="1.5" height="1.5" fill="#1F1A14" />
-          <rect x="13.5" y="5.5" width="1" height="1" fill="#1F1A14" />
+          <rect x="13.5" y="5.5" width="1" height="1" fill="#F6F0E3" />
 
-          {/* Round Ears */}
+          {/* Round Ears with Cream Accent */}
           {currentState === 'perk' ? (
-            <rect x="11" y="1" width="2.5" height="3.5" fill="#A39B8B" rx="1" />
+            <>
+              <rect x="11" y="1" width="2.5" height="3.5" fill="#2B211A" rx="1" stroke="rgba(246,240,227,0.9)" strokeWidth="0.6" />
+              <rect x="11.5" y="1.5" width="1.5" height="2" fill="#F6F0E3" />
+            </>
           ) : (
-            <rect x="10.5" y="2.5" width="2.5" height="3" fill="#A39B8B" rx="1" />
+            <>
+              <rect x="10.5" y="2.5" width="2.5" height="3" fill="#2B211A" rx="1" stroke="rgba(246,240,227,0.9)" strokeWidth="0.6" />
+              <rect x="11" y="3" width="1.5" height="1.5" fill="#F6F0E3" />
+            </>
           )}
 
-          {/* Primary Accent Collar (Deep Terracotta #B4441F) */}
-          <rect x="11" y="7.5" width="2" height="1" fill="#B4441F" />
+          {/* Terracotta Collar (#B4441F) */}
+          <rect x="11" y="7.5" width="2" height="1.2" fill="#B4441F" />
 
-          {/* Legs & Animated Paws */}
+          {/* Legs & Animated Paws (Ink-brown with cream paw tips) */}
           {currentState === 'walk' || currentState === 'run' ? (
             <>
               <rect
@@ -344,22 +356,38 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
                 y="12"
                 width="1.8"
                 height="3.5"
-                fill="#ECE6D6"
+                fill="#2B211A"
+              />
+              <rect
+                x={walkFrameIndex.current === 0 ? '12.5' : '14'}
+                y="14.5"
+                width="1.8"
+                height="1"
+                fill="#F6F0E3"
               />
               <rect
                 x={walkFrameIndex.current === 2 ? '5' : '6.5'}
                 y="12"
                 width="1.8"
                 height="3.5"
-                fill="#ECE6D6"
+                fill="#2B211A"
+              />
+              <rect
+                x={walkFrameIndex.current === 2 ? '5' : '6.5'}
+                y="14.5"
+                width="1.8"
+                height="1"
+                fill="#F6F0E3"
               />
             </>
           ) : currentState === 'sleep' ? (
-            <rect x="5" y="12" width="8" height="2" fill="#ECE6D6" />
+            <rect x="5" y="12" width="8" height="2" fill="#2B211A" />
           ) : (
             <>
-              <rect x="6" y="12" width="2" height="3" fill="#ECE6D6" />
-              <rect x="12" y="12" width="2" height="3" fill="#ECE6D6" />
+              <rect x="6" y="12" width="2" height="3" fill="#2B211A" />
+              <rect x="6" y="14" width="2" height="1" fill="#F6F0E3" />
+              <rect x="12" y="12" width="2" height="3" fill="#2B211A" />
+              <rect x="12" y="14" width="2" height="1" fill="#F6F0E3" />
             </>
           )}
 
@@ -367,29 +395,29 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
           {currentState === 'wag' ? (
             <path
               d="M 5 8 Q 2 6 3 4"
-              stroke="#ECE6D6"
-              strokeWidth="1.5"
+              stroke="#2B211A"
+              strokeWidth="1.8"
               fill="none"
               strokeLinecap="round"
               className="animate-pulse"
             />
           ) : currentState === 'sleep' ? (
-            <path d="M 5 10 Q 3 11 2 12" stroke="#ECE6D6" strokeWidth="1.5" fill="none" />
+            <path d="M 5 10 Q 3 11 2 12" stroke="#2B211A" strokeWidth="1.8" fill="none" />
           ) : (
-            <path d="M 5 8 Q 2 5 3 3" stroke="#ECE6D6" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+            <path d="M 5 8 Q 2 5 3 3" stroke="#2B211A" strokeWidth="1.8" fill="none" strokeLinecap="round" />
           )}
         </svg>
 
         {/* Bark Bubble */}
         {barking && (
-          <div className="absolute -top-7 -right-6 px-2 py-0.5 rounded bg-[#1F1A14] text-[#EAE2D1] font-mono text-[9px] font-bold shadow-sm animate-bounce pointer-events-none">
+          <div className="absolute -top-7 -right-6 px-2 py-0.5 rounded bg-[#2B211A] text-[#F6F0E3] font-mono text-[9px] font-bold shadow-md animate-bounce pointer-events-none">
             woof!
           </div>
         )}
 
-        {/* Sleeping bubbles */}
+        {/* Sleeping "z z" bubbles using ink at 60% */}
         {sleeping && (
-          <div className="absolute -top-6 -right-2 text-xs font-mono text-[#5E6B3A] font-bold animate-pulse pointer-events-none">
+          <div className="absolute -top-6 -right-2 text-xs font-mono text-[#1F1A14]/60 font-bold animate-pulse pointer-events-none">
             z Z
           </div>
         )}
