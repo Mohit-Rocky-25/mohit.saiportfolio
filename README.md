@@ -1,92 +1,91 @@
-# Y. Mohit Sai — Digital Portfolio & Systems Showcase
+# Y. Mohit Sai — Personal Portfolio & Systems Showcase
 
-> Minimalistic, high-performance portfolio engineered with React 19, TypeScript (Strict Mode), Vite, Tailwind CSS, and Framer Motion.
+> Minimalistic, high-performance personal portfolio engineered with React, TypeScript, Vite, Tailwind CSS, and Framer Motion.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict_Mode-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![Vite 8](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vercel Ready](https://img.shields.io/badge/Vercel-Ready-black?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ---
 
-## 👨‍💻 About Mohit Sai
+## 👨‍💻 About Y. Mohit Sai
 
 - **Identity**: Y. Mohit Sai
-- **Current Education**: B.Tech in **Computer Science and Engineering (CSE Core)** at **VIT-AP University**, Amaravati, Andhra Pradesh.
-- **Previous Education**: Higher Secondary Education (12th Grade / Intermediate) completed at **Narayana Junior College, Kurnool**.
-- **Contact Email**: [`yadavmohit12243@gmail.com`](mailto:yadavmohit12243@gmail.com)
+- **Current Education**: B.Tech in **Computer Science and Engineering (CSE Core)** at **VIT-AP University**, Amaravati (2023 — Present).
+- **Previous Education**: 12th Grade / Intermediate (MPC) completed at **Narayana Junior College, Kurnool**.
+- **Email**: [`yadavmohit12243@gmail.com`](mailto:yadavmohit12243@gmail.com)
+- **LinkedIn**: [linkedin.com/in/mohit-sai-57255b373](https://www.linkedin.com/in/mohit-sai-57255b373/)
 - **GitHub**: [github.com/Mohit-Rocky-25](https://github.com/Mohit-Rocky-25)
-- **LinkedIn**: [linkedin.com/in/mohit-sai](https://www.linkedin.com/in/mohit-sai)
 
 ---
 
-## ⚡ Core Technical Passions
+## ⚡ Core Passions & Focus
 
 1. **Competitive Programming**:
-   - Focus on mathematical intuition, optimal asymptotic time and space complexity ($O(1)$ to $O(N \log N)$), cache spatial locality, and invariant proof under extreme edge cases.
-   - Topics: Graph Theory, Dynamic Programming, Segment Trees, Disjoint Set Union (DSU), Bit Manipulation.
-2. **High-Frequency Trading (HFT) & Systems**:
+   - Focus on mathematical intuition, optimal time and space complexity ($O(1)$ to $O(N \log N)$), cache spatial locality, and invariant proofs under tight runtime bounds.
+   - Core topics: Graph Theory, Dynamic Programming, Segment Trees, Disjoint Set Union (DSU), Bit Manipulation.
+2. **High-Frequency Trading (HFT) & Low-Latency Systems**:
    - Fascination with market microstructure, deterministic order execution, Level 2/3 order book reconstruction, lock-free ring buffers, zero-allocation memory architectures, and sub-microsecond low-latency engineering.
 
 ---
 
 ## 🚀 Featured Engineering Projects
 
-### 1. [RepoPilot](https://github.com/Mohit-Rocky-25/RepoPilot) *(Primary Flagship)*
+### 1. [RepoPilot](https://github.com/Mohit-Rocky-25/RepoPilot) *(Flagship Platform)*
 - **Live Demo**: [repo-pilot-eta.vercel.app](https://repo-pilot-eta.vercel.app)
-- **Description**: Open-Source Codebase Intelligence, 3D Architecture Visualization, and Grounded AST Debugging Platform.
-- **Key Capabilities**: In-memory AST symbol indexing, deterministic ranked search on local compute, commit-SHA tied citations with zero hallucinations, defensive memory-diff sandboxing, 308 passed automated tests.
-- **Tech Stack**: Next.js 14, TypeScript Strict, Python, Go, AST Parsers, Vitest, Docker, Tailwind CSS, Ollama.
+- **Description**: Open-Source Codebase Intelligence, AST Symbol Mapping, and Grounded Debugging Platform.
+- **Tech Stack**: Next.js, TypeScript, Python, Go, Tailwind CSS, Docker, Vitest.
+- **Key Capabilities**: In-memory AST symbol indexing, deterministic ranked search on local compute, verified commit citations with zero hallucination, and automated regression testing.
 
-### 2. [HireFlow v3](https://github.com/Mohit-Rocky-25/hireflow) *(Primary Flagship)*
-- **Description**: Privacy-First Client-Side Career & Resume Intelligence Platform for Indian Engineers.
-- **Key Capabilities**: 100% in-browser client-side execution via `pdfjs-dist` and `pdf-lib` binary stream parsing with zero telemetry or data exfiltration. Deterministic ATS Resume Roaster, side-by-side JD divergence analysis, truth-gate invariant ledger, and greedy set-cover project brief recommendations. 766 automated Vitest tests.
-- **Tech Stack**: React 19, TypeScript Strict, Vite, Tailwind CSS, Zustand, Zod, pdfjs-dist, pdf-lib, mammoth, Vitest.
+### 2. [HireFlow](https://github.com/Mohit-Rocky-25/hireflow) *(Client-Side Architecture)*
+- **Description**: Privacy-First Client-Side ATS Resume Parser and Algorithmic Job Optimizer.
+- **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, Zustand, Zod, Vitest.
+- **Key Capabilities**: 100% in-browser document parsing using WebAssembly with zero server uploads, strict Zod schema validation, and greedy set-cover project match recommendations.
 
-### 3. [UniLang](https://github.com/Mohit-Rocky-25/UNILANG) *(Project #3)*
+### 3. [UniLang](https://github.com/Mohit-Rocky-25/UNILANG) *(Audio Systems & Immersion)*
 - **Live Demo**: [unilang-three.vercel.app](https://unilang-three.vercel.app)
-- **Description**: Contextual Language Learning & Multilingual Cultural Bridge Platform.
-- **Key Capabilities**: Interactive situational conversational learning, acoustic pronunciation guides via Web Audio API, spaced-repetition retention models, and cultural explorer contexts.
-- **Tech Stack**: React, Next.js, JavaScript, TypeScript, Web Audio API, Tailwind CSS, REST APIs.
+- **Description**: Contextual Language Immersion Platform with Native Browser Audio Synthesis.
+- **Tech Stack**: React, Next.js, TypeScript, JavaScript, Tailwind CSS, Web Audio API.
+- **Key Capabilities**: Real-time frequency synthesis directly via the Web Audio API without server audio files, latency-adaptive SuperMemo-2 review intervals, and situational immersion scenarios.
 
 ---
 
-## 🛠️ Complete Extracted Tech Stack & Skills
+## 🛠️ Complete Tech Stack
 
-- **Languages**: TypeScript, Python, C++, Go, Java, JavaScript (ESNext), SQL, HTML5 / CSS3
-- **Frontend & UI**: React 19, Next.js 14, Vite, Tailwind CSS, Zustand, Framer Motion, Web Audio API
-- **Systems & Architecture**: Data Structures & Algorithms (DSA), AST Symbol Extraction, Deterministic Sandboxing, Market Microstructure Basics, Client-Side In-Memory Engines, Truth Gate Invariants
-- **Testing & Infrastructure**: Vitest (1,074+ automated tests across projects), Docker, Git & GitHub Actions, Zod, Linux, Vercel
+- **Languages**: C++, Python, TypeScript, JavaScript, Go, Java, SQL
+- **Frontend & Full Stack**: React, Next.js, Node.js, Tailwind CSS, Vite, Zustand, Web Audio API
+- **Systems & Core CS**: Data Structures & Algorithms, Competitive Programming, Low-Latency Concepts, AST Symbol Extraction
+- **Developer Tools**: Git & GitHub, Docker, Linux / Bash, Vitest, Zod, Vercel
+
+---
+
+## 🚀 Deployment on Vercel
+
+This repository is pre-configured for **zero-config deployment on Vercel**:
+
+1. Go to [vercel.com](https://vercel.com/) and click **Add New Project**.
+2. Select your GitHub repository (`mohit.saiportfolio`).
+3. Vercel automatically detects the framework as **Vite**:
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. Click **Deploy**!
 
 ---
 
 ## 💻 Local Development
 
 ```bash
-# Clone repository
-git clone https://github.com/Mohit-Rocky-25/mohitsaiportfolio.git
-cd mohitsaiportfolio
+# Clone the repository
+git clone https://github.com/Mohit-Rocky-25/mohit.saiportfolio.git
+
+# Navigate to project directory
+cd mohit.saiportfolio
 
 # Install dependencies
 npm install
 
-# Start development server
+# Start local development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
-
----
-
-## 🚢 Deployment to Vercel
-
-This repository is optimized for one-click deployment on [Vercel](https://vercel.com):
-1. Import this repository into Vercel.
-2. Framework Preset: **Vite**
-3. Build Command: `npm run build`
-4. Output Directory: `dist`
-5. Click **Deploy**.
