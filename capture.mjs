@@ -76,23 +76,22 @@ async function main() {
     let snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/hero-1440.png', Buffer.from(snap.result.data, 'base64'));
 
-    // Scene 01: RepoPilot
-    await send('Runtime.evaluate', { expression: `window.__goToScene(0)` });
-    await new Promise(r => setTimeout(r, 1200));
+    // Work Section: RepoPilot
+    await send('Runtime.evaluate', { expression: `document.getElementById('work').scrollIntoView({ behavior: 'instant' })` });
+    await new Promise(r => setTimeout(r, 1000));
     snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/scene1-1440.png', Buffer.from(snap.result.data, 'base64'));
+    writeFileSync('screenshots/work-repopilot-1440.png', Buffer.from(snap.result.data, 'base64'));
 
-    // Scene 02: HireFlow
-    await send('Runtime.evaluate', { expression: `window.__goToScene(1)` });
-    await new Promise(r => setTimeout(r, 1200));
+    // Work Section: Scroll down to HireFlow and UniLang
+    await send('Runtime.evaluate', { expression: `window.scrollBy(0, 750)` });
+    await new Promise(r => setTimeout(r, 800));
     snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/scene2-1440.png', Buffer.from(snap.result.data, 'base64'));
+    writeFileSync('screenshots/work-hireflow-1440.png', Buffer.from(snap.result.data, 'base64'));
 
-    // Scene 03: UniLang
-    await send('Runtime.evaluate', { expression: `window.__goToScene(2)` });
-    await new Promise(r => setTimeout(r, 1200));
+    await send('Runtime.evaluate', { expression: `window.scrollBy(0, 800)` });
+    await new Promise(r => setTimeout(r, 800));
     snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/scene3-1440.png', Buffer.from(snap.result.data, 'base64'));
+    writeFileSync('screenshots/work-unilang-1440.png', Buffer.from(snap.result.data, 'base64'));
 
     // About
     await send('Runtime.evaluate', { expression: `document.getElementById('about').scrollIntoView({ behavior: 'instant' })` });
@@ -131,20 +130,10 @@ async function main() {
     snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/hero-768.png', Buffer.from(snap.result.data, 'base64'));
 
-    await send('Runtime.evaluate', { expression: `window.__goToScene(0)` });
-    await new Promise(r => setTimeout(r, 1200));
+    await send('Runtime.evaluate', { expression: `document.getElementById('work').scrollIntoView({ behavior: 'instant' })` });
+    await new Promise(r => setTimeout(r, 800));
     snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/scene1-768.png', Buffer.from(snap.result.data, 'base64'));
-
-    await send('Runtime.evaluate', { expression: `window.__goToScene(1)` });
-    await new Promise(r => setTimeout(r, 1200));
-    snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/scene2-768.png', Buffer.from(snap.result.data, 'base64'));
-
-    await send('Runtime.evaluate', { expression: `window.__goToScene(2)` });
-    await new Promise(r => setTimeout(r, 1200));
-    snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/scene3-768.png', Buffer.from(snap.result.data, 'base64'));
+    writeFileSync('screenshots/work-768.png', Buffer.from(snap.result.data, 'base64'));
 
     ws.close();
     console.log('Successfully captured all desktop and 768p screenshots!');
