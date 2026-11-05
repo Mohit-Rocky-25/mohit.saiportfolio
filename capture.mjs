@@ -135,8 +135,25 @@ async function main() {
     snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/work-768.png', Buffer.from(snap.result.data, 'base64'));
 
+    // 3. CAPTURE AT 390x844 (Mobile Viewport)
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 2,
+      mobile: true
+    });
+    await send('Runtime.evaluate', {
+      expression: `(() => {
+        window.scrollTo(0, 0);
+        window.dispatchEvent(new Event('resize'));
+      })()`
+    });
+    await new Promise(r => setTimeout(r, 1000));
+    snap = await send('Page.captureScreenshot', { format: 'png' });
+    writeFileSync('screenshots/hero-mobile.png', Buffer.from(snap.result.data, 'base64'));
+
     ws.close();
-    console.log('Successfully captured all desktop and 768p screenshots!');
+    console.log('Successfully captured desktop, 768p, and mobile screenshots!');
   } finally {
     edge.kill();
   }

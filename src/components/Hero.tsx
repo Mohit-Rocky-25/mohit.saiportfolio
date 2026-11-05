@@ -57,28 +57,6 @@ export function Hero() {
     <section className="relative min-h-[calc(100svh-var(--nav-h))] flex flex-col justify-between pt-4 sm:pt-8 lg:pt-10 pb-6 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto w-full">
       {/* Main Split Grid (Balanced, centered, high-impact alignment) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center my-auto py-6 sm:py-8">
-        
-        {/* Mobile: Square Photo appears above on small screens */}
-        <div className="lg:hidden flex justify-center mb-4">
-          <div className="relative w-full max-w-[280px] sm:max-w-[340px] aspect-square">
-            {/* Offset Terracotta Background Frame */}
-            <div
-              className="absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-3xl border-2 border-[#B4441F] bg-[#B4441F]/10 pointer-events-none z-0"
-              aria-hidden="true"
-            />
-            {/* Square Photo Container */}
-            <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden shadow-xl border-2 border-[#1F1A14] bg-[#EAE2D1]">
-              <picture>
-                <source srcSet="/images/mohit.webp" type="image/webp" />
-                <img
-                  src="/images/mohit.jpg"
-                  alt="Portrait of Y. Mohit Sai"
-                  className="w-full h-full object-cover object-[50%_20%]"
-                />
-              </picture>
-            </div>
-          </div>
-        </div>
 
         {/* Left Column: Big, Bold, Highlighted Identity & Bio */}
         <div className="lg:col-span-7 space-y-5 sm:space-y-6">
@@ -129,6 +107,28 @@ export function Hero() {
           <p className="font-text text-base sm:text-lg lg:text-xl text-[#1F1A14]/90 font-medium leading-relaxed max-w-2xl">
             {PORTFOLIO_CONFIG.profile.brief}
           </p>
+
+          {/* Mobile: Square Photo placed around/after the brief (not at top of page) */}
+          <div className="lg:hidden flex justify-center my-3 sm:my-4">
+            <div className="relative w-full max-w-[260px] sm:max-w-[320px] aspect-square">
+              {/* Offset Terracotta Background Frame */}
+              <div
+                className="absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-3xl border-2 border-[#B4441F] bg-[#B4441F]/10 pointer-events-none z-0"
+                aria-hidden="true"
+              />
+              {/* Square Photo Container */}
+              <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden shadow-xl border-2 border-[#1F1A14] bg-[#EAE2D1]">
+                <picture>
+                  <source srcSet="/images/mohit.webp" type="image/webp" />
+                  <img
+                    src="/images/mohit.jpg"
+                    alt="Portrait of Y. Mohit Sai"
+                    className="w-full h-full object-cover object-[50%_20%]"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
 
           {/* Premium Black Textured Contact Slider (LinkedIn -> GitHub -> Email) */}
           <div className="pt-1">
