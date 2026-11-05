@@ -1,10 +1,31 @@
+import { useState, useEffect } from 'react'
 import { PORTFOLIO_CONFIG } from '../data/config'
 
 export function Navbar() {
+  const [hidden, setHidden] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > 120 && currentScrollY > lastScrollY) {
+        setHidden(true)
+      } else {
+        setHidden(false)
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   return (
     <nav
       style={{ backgroundColor: 'var(--scene-bg)' }}
-      className="fixed top-0 left-0 right-0 z-40 h-[72px] transition-colors duration-300 border-b border-[#1F1A14]/14"
+      className={`fixed top-0 left-0 right-0 z-40 h-[72px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border-b border-[#1F1A14]/14 ${
+        hidden ? '-translate-y-full' : 'translate-y-0'
+      }`}
     >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
         {/* Left: "YMS" with the dog's ears peeking over the Y */}
