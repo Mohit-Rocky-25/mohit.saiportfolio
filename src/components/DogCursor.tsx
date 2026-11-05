@@ -38,7 +38,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
   const targetRef = useRef({ x: 120, y: 180 })
   const lastMousePos = useRef({ x: 120, y: 180 })
   const lastMoveTime = useRef(Date.now())
-  const lastStateChange = useRef(Date.now())
   const stateRef = useRef<DogState>('idle-sit')
   const pawPrintsRef = useRef<PawPrint[]>([])
   const leftPawNext = useRef(true)
@@ -54,7 +53,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
   }, [currentState])
 
   useEffect(() => {
-    // Check reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setDogVisible(false)
       return
@@ -99,7 +97,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
 
       if (stateRef.current === 'sleep') {
         setCurrentState('stretch')
-        lastStateChange.current = Date.now()
       }
     }
 
@@ -115,7 +112,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
     window.addEventListener('mousemove', onMouseMove, { passive: true })
     window.addEventListener('click', onClick)
 
-    // Global custom reactions
     const onDogReact = (e: Event) => {
       const custom = e as CustomEvent<{ action: DogState }>
       if (custom.detail?.action) {
@@ -142,7 +138,7 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
     let animId: number
 
     const render = (time: number) => {
-      const dt = Math.min((time - lastTime) / 1000, 0.1) // clamp delta
+      const dt = Math.min((time - lastTime) / 1000, 0.1)
       lastTime = time
 
       const isTouch = window.matchMedia('(pointer: coarse)').matches
@@ -158,31 +154,25 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         }
       }
 
-      // Compute vector to target
       const dx = targetRef.current.x - posRef.current.x
       const dy = targetRef.current.y - posRef.current.y
       const dist = Math.hypot(dx, dy)
       const angle = Math.atan2(dy, dx)
 
-      // Facing direction flip
       if (Math.abs(dx) > 4) {
         setFacingLeft(dx < 0)
       }
 
-      // State machine logic
       const idleTime = now - lastMoveTime.current
 
       if (stateRef.current !== 'bark' && stateRef.current !== 'sniff-hop') {
         if (dist > 180) {
-          // Fast movement -> run
           setCurrentState('run')
           setSleeping(false)
         } else if (dist > 36) {
-          // Normal movement -> walk
           setCurrentState('walk')
           setSleeping(false)
         } else {
-          // Arrived within target zone
           if (idleTime > 8000) {
             setCurrentState('sleep')
             setSleeping(true)
@@ -196,31 +186,26 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         }
       }
 
-      // Step physics (readable stride based, capped speed)
       if (stateRef.current === 'walk' || stateRef.current === 'run') {
         const isRunning = stateRef.current === 'run'
-        const maxSpeed = isRunning ? 380 : 190 // px/s
-        const strideCycle = isRunning ? 0.15 : 0.26 // seconds per cycle
+        const maxSpeed = isRunning ? 380 : 190
+        const strideCycle = isRunning ? 0.14 : 0.26
 
         const moveDist = Math.min(dist, maxSpeed * dt)
         posRef.current.x += Math.cos(angle) * moveDist
         posRef.current.y += Math.sin(angle) * moveDist
 
-        // Step accumulator for walk cycle
         walkAccumulator.current += dt
         if (walkAccumulator.current >= strideCycle / 4) {
           walkAccumulator.current = 0
           walkFrameIndex.current = (walkFrameIndex.current + 1) % 4
 
-          // Contact frames are 0 and 2
           if (walkFrameIndex.current === 0 || walkFrameIndex.current === 2) {
-            // Stamp paw print
             stampPaw(angle, isRunning)
           }
         }
       }
 
-      // Update Dog Element Position
       if (containerRef.current) {
         const bob = (stateRef.current === 'walk' || stateRef.current === 'run')
           ? (walkFrameIndex.current % 2 === 0 ? -2 : 0)
@@ -228,18 +213,15 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         containerRef.current.style.transform = `translate3d(${posRef.current.x - 20}px, ${posRef.current.y - 18 + bob}px, 0)`
       }
 
-      // Render Paw Prints Canvas
       drawPawCanvas(now)
 
       animId = requestAnimationFrame(render)
     }
 
-    // Function to stamp paw print on canvas
     const stampPaw = (angle: number, isRunning: boolean) => {
       const isLeft = leftPawNext.current
       leftPawNext.current = !leftPawNext.current
 
-      // Offset paw left/right perpendicular to walking vector
       const perpAngle = angle + (isLeft ? -Math.PI / 2 : Math.PI / 2)
       const offsetDist = isRunning ? 7 : 5
 
@@ -250,19 +232,17 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         x: pawX,
         y: pawY,
         angle: angle,
-        opacity: isRunning ? 0.45 : 0.6,
-        scale: isRunning ? 1.1 : 0.95,
+        opacity: isRunning ? 0.4 : 0.5, // 50% opacity per prompt
+        scale: isRunning ? 1.05 : 0.95,
         born: Date.now(),
         isLeft,
       })
 
-      // Keep max 40 live prints
       if (pawPrintsRef.current.length > 40) {
         pawPrintsRef.current.shift()
       }
     }
 
-    // Function to draw paw prints
     const drawPawCanvas = (now: number) => {
       const canvas = canvasRef.current
       if (!canvas) return
@@ -272,7 +252,7 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       pawPrintsRef.current = pawPrintsRef.current.filter((print) => {
-        const age = (now - print.born) / 1000 // in seconds
+        const age = (now - print.born) / 1000
         if (age > 2.2) return false
 
         const alpha = Math.max(0, print.opacity * (1 - age / 2.2))
@@ -283,15 +263,15 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
         ctx.rotate(print.angle + Math.PI / 2)
         ctx.scale(scale, scale)
 
-        // Draw paw print in signal vermilion #FF5A2C
-        ctx.fillStyle = `rgba(255, 90, 44, ${alpha})`
+        // Deep terracotta paw prints (#B4441F) at ~50% opacity
+        ctx.fillStyle = `rgba(180, 68, 31, ${alpha})`
 
         // Main pad
         ctx.beginPath()
         ctx.ellipse(0, 0, 3.2, 2.5, 0, 0, Math.PI * 2)
         ctx.fill()
 
-        // 3 tiny toe beans
+        // 3 toe dots
         ctx.beginPath()
         ctx.arc(-2.4, -3.4, 1.1, 0, Math.PI * 2)
         ctx.arc(0, -4.2, 1.1, 0, Math.PI * 2)
@@ -331,37 +311,34 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
           className="overflow-visible"
           style={{ imageRendering: 'pixelated' }}
         >
-          {/* Shadow beneath dog */}
-          <ellipse cx="10" cy="16" rx="6.5" ry="1.5" fill="rgba(14, 20, 17, 0.45)" />
+          {/* Shadow */}
+          <ellipse cx="10" cy="16" rx="6.5" ry="1.5" fill="rgba(31, 26, 20, 0.22)" />
 
-          {/* Body (Parchment #ECE6D6) */}
+          {/* Body (linen #EAE2D1) */}
           <rect x="5" y="7" width="9" height="6" fill="#ECE6D6" rx="1" />
 
-          {/* Darker Patch on flank (#8A7E6C) */}
-          <rect x="7" y="8" width="3" height="3" fill="#8A7E6C" />
+          {/* Darker Patch (#A39B8B) */}
+          <rect x="7" y="8" width="3" height="3" fill="#A39B8B" />
 
           {/* Head & Snout */}
           <rect x="11" y="4" width="6" height="5" fill="#ECE6D6" rx="1" />
-          <rect x="15" y="6" width="3" height="3" fill="#E2DAC7" />
-          {/* Nose (dark) */}
-          <rect x="17" y="6" width="1.5" height="1.5" fill="#1C1915" />
-          {/* Eye */}
-          <rect x="13.5" y="5.5" width="1" height="1" fill="#1C1915" />
+          <rect x="15" y="6" width="3" height="3" fill="#DFD6C3" />
+          <rect x="17" y="6" width="1.5" height="1.5" fill="#1F1A14" />
+          <rect x="13.5" y="5.5" width="1" height="1" fill="#1F1A14" />
 
-          {/* Round Ears (Parchment/Darker Patch) */}
+          {/* Round Ears */}
           {currentState === 'perk' ? (
-            <rect x="11" y="1" width="2.5" height="3.5" fill="#8A7E6C" rx="1" />
+            <rect x="11" y="1" width="2.5" height="3.5" fill="#A39B8B" rx="1" />
           ) : (
-            <rect x="10.5" y="2.5" width="2.5" height="3" fill="#8A7E6C" rx="1" />
+            <rect x="10.5" y="2.5" width="2.5" height="3" fill="#A39B8B" rx="1" />
           )}
 
-          {/* Signal Vermilion Collar (#FF5A2C) */}
-          <rect x="11" y="7.5" width="2" height="1" fill="#FF5A2C" />
+          {/* Primary Accent Collar (Deep Terracotta #B4441F) */}
+          <rect x="11" y="7.5" width="2" height="1" fill="#B4441F" />
 
-          {/* Legs & Animated Paws based on walkFrameIndex */}
+          {/* Legs & Animated Paws */}
           {currentState === 'walk' || currentState === 'run' ? (
             <>
-              {/* Front legs */}
               <rect
                 x={walkFrameIndex.current === 0 ? '12.5' : '14'}
                 y="12"
@@ -369,7 +346,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
                 height="3.5"
                 fill="#ECE6D6"
               />
-              {/* Back legs */}
               <rect
                 x={walkFrameIndex.current === 2 ? '5' : '6.5'}
                 y="12"
@@ -379,19 +355,15 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
               />
             </>
           ) : currentState === 'sleep' ? (
-            <>
-              {/* Tucked legs */}
-              <rect x="5" y="12" width="8" height="2" fill="#ECE6D6" />
-            </>
+            <rect x="5" y="12" width="8" height="2" fill="#ECE6D6" />
           ) : (
             <>
-              {/* Sitting posture legs */}
               <rect x="6" y="12" width="2" height="3" fill="#ECE6D6" />
               <rect x="12" y="12" width="2" height="3" fill="#ECE6D6" />
             </>
           )}
 
-          {/* Tail with wagging animation */}
+          {/* Tail */}
           {currentState === 'wag' ? (
             <path
               d="M 5 8 Q 2 6 3 4"
@@ -408,16 +380,16 @@ export const DogCursor: React.FC<DogCursorProps> = ({ enabled }) => {
           )}
         </svg>
 
-        {/* Visual Bark 'Woof' Speech Bubble (No audio by default) */}
+        {/* Bark Bubble */}
         {barking && (
-          <div className="absolute -top-7 -right-6 px-2 py-0.5 rounded-md bg-[#ECE6D6] text-[#0E1411] font-mono text-[9px] font-bold shadow-md animate-bounce pointer-events-none">
+          <div className="absolute -top-7 -right-6 px-2 py-0.5 rounded bg-[#1F1A14] text-[#EAE2D1] font-mono text-[9px] font-bold shadow-sm animate-bounce pointer-events-none">
             woof!
           </div>
         )}
 
-        {/* Sleeping floating 'z' bubbles */}
+        {/* Sleeping bubbles */}
         {sleeping && (
-          <div className="absolute -top-6 -right-2 text-xs font-mono text-[#9DB59A] font-bold animate-pulse pointer-events-none">
+          <div className="absolute -top-6 -right-2 text-xs font-mono text-[#5E6B3A] font-bold animate-pulse pointer-events-none">
             z Z
           </div>
         )}

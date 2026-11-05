@@ -52,18 +52,18 @@ export function Hero() {
   const nameLetters = PORTFOLIO_CONFIG.profile.name.split('')
 
   return (
-    <section className="relative min-h-[96vh] flex flex-col justify-between pt-28 sm:pt-36 pb-6 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto w-full">
+    <section className="relative min-h-[94vh] flex flex-col justify-between pt-28 sm:pt-36 pb-6 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto w-full">
       {/* Main Split Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center my-auto">
-        {/* Mobile: Photo appears above text on mobile */}
+        {/* Mobile: Photo appears above text on mobile (70% width, centered) */}
         <div className="lg:hidden flex justify-center mb-2">
           <div className="relative w-[70%] max-w-[280px] aspect-[340/420]">
-            {/* Vermilion offset arch outline */}
+            {/* Terracotta offset arch outline */}
             <div
-              className="absolute inset-0 translate-x-2 translate-y-2 rounded-t-[140px] border border-[#FF5A2C]/60 pointer-events-none"
+              className="absolute inset-0 translate-x-2 translate-y-2 rounded-t-[140px] border border-[#B4441F]/60 pointer-events-none"
               aria-hidden="true"
             />
-            {/* Arched image */}
+            {/* Real Photograph with object-position: 50% 25% */}
             <picture>
               <source srcSet="/images/mohit.webp" type="image/webp" />
               <img
@@ -71,7 +71,7 @@ export function Hero() {
                 alt="Portrait of Y. Mohit Sai"
                 width="340"
                 height="420"
-                className="w-full h-full object-cover object-[50%_30%] rounded-t-[140px] shadow-2xl relative z-10"
+                className="w-full h-full object-cover object-[50%_25%] rounded-t-[140px] shadow-lg relative z-10"
               />
             </picture>
           </div>
@@ -79,17 +79,17 @@ export function Hero() {
 
         {/* Left: Intro Brief & Modest Name */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="font-mono text-xs text-[#9DB59A] uppercase tracking-widest flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#FF5A2C] animate-pulse" />
+          <div className="font-text text-[13px] text-[#5E6B3A] flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#B4441F] animate-pulse" />
             <span>{PORTFOLIO_CONFIG.profile.heroLabel}</span>
           </div>
 
           {/* Name: Modest and confident, clamp max 4.5rem, letter drop-in with slight rotate-settle */}
-          <h1 className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold tracking-tight text-[#ECE6D6] leading-[1.05] flex flex-wrap">
+          <h1 className="font-display text-[clamp(2.25rem,5.5vw,4.5rem)] font-bold tracking-tight text-[#1F1A14] leading-[1.05] flex flex-wrap">
             {nameLetters.map((char, index) => (
               <motion.span
                 key={index}
-                initial={{ y: -35, opacity: 0, rotate: index % 2 === 0 ? -4 : 4 }}
+                initial={{ y: -30, opacity: 0, rotate: index % 2 === 0 ? -3 : 3 }}
                 animate={{ y: 0, opacity: 1, rotate: 0 }}
                 transition={{
                   duration: 0.6,
@@ -103,22 +103,22 @@ export function Hero() {
             ))}
           </h1>
 
-          <p className="font-mono text-xs sm:text-sm text-[#FF5A2C] uppercase tracking-wider font-medium">
+          <p className="font-text text-base sm:text-lg text-[#B4441F] font-medium">
             {PORTFOLIO_CONFIG.profile.roleTagline}
           </p>
 
-          <p className="font-text text-base sm:text-lg text-[#ECE6D6]/80 font-light leading-relaxed max-w-xl">
+          <p className="font-text text-base sm:text-lg text-[#1F1A14]/80 font-normal leading-relaxed max-w-xl">
             {PORTFOLIO_CONFIG.profile.brief}
           </p>
 
           {/* Two Plain Text Links */}
-          <div className="pt-4 flex items-center gap-8 text-sm font-mono tracking-tight">
-            <a href="#work" className="vermilion-link font-medium">
+          <div className="pt-4 flex items-center gap-8 text-sm font-text">
+            <a href="#work" className="terracotta-link font-medium">
               See my work →
             </a>
             <a
               href={`mailto:${PORTFOLIO_CONFIG.contact.email}`}
-              className="vermilion-link text-[#9DB59A] hover:text-[#FF5A2C]"
+              className="terracotta-link text-[#5E6B3A] hover:text-[#B4441F]"
             >
               Email me ↗
             </a>
@@ -134,16 +134,16 @@ export function Hero() {
             onMouseEnter={() => handlePhotoHover(true)}
             className="relative w-[340px] h-[420px] select-none"
           >
-            {/* Thin vermilion arch outline offset 10px behind image, draws in */}
+            {/* Thin terracotta arch outline offset 10px behind image */}
             <motion.div
-              initial={{ pathLength: 0, opacity: 0 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.9, delay: 0.3 }}
-              className="absolute inset-0 translate-x-[10px] translate-y-[10px] rounded-t-[170px] border border-[#FF5A2C] pointer-events-none"
+              className="absolute inset-0 translate-x-[10px] translate-y-[10px] rounded-t-[170px] border border-[#B4441F] pointer-events-none"
               aria-hidden="true"
             />
 
-            {/* Arched Photo with clip-path reveal and subtle parallax */}
+            {/* Real Arched Photo with object-position: 50% 25% */}
             <motion.div
               initial={{ clipPath: 'inset(100% 0 0 0 round 170px 170px 0 0)', scale: 1.08 }}
               animate={{ clipPath: 'inset(0% 0 0 0 round 170px 170px 0 0)', scale: 1 }}
@@ -151,7 +151,7 @@ export function Hero() {
               style={{
                 transform: `translate3d(${mouseParallax.x}px, ${mouseParallax.y}px, 0)`,
               }}
-              className="w-full h-full rounded-t-[170px] overflow-hidden shadow-2xl relative z-10 transition-transform duration-200 ease-out"
+              className="w-full h-full rounded-t-[170px] overflow-hidden shadow-xl relative z-10 transition-transform duration-200 ease-out"
             >
               <picture>
                 <source srcSet="/images/mohit.webp" type="image/webp" />
@@ -160,7 +160,7 @@ export function Hero() {
                   alt="Portrait of Y. Mohit Sai"
                   width="340"
                   height="420"
-                  className="w-full h-full object-cover object-[50%_30%]"
+                  className="w-full h-full object-cover object-[50%_25%]"
                 />
               </picture>
             </motion.div>
@@ -169,25 +169,25 @@ export function Hero() {
       </div>
 
       {/* Bottom Slim Full-Width Simulated Order Book Ticker */}
-      <div className="w-full pt-8 pb-2 border-t border-[#ECE6D6]/12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-[#ECE6D6]/60">
+      <div className="w-full pt-6 pb-2 border-t border-[#1F1A14]/14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-text text-[#6B6254]">
         <div className="flex items-center gap-3">
-          <span className="text-[#FF5A2C] uppercase tracking-wider font-bold">
-            Simulated L2 Feed
+          <span className="text-[#B4441F] font-semibold">
+            Simulated order book
           </span>
           <span>•</span>
           <span>NSE_NIFTY_FUT</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-5 sm:gap-8">
+        <div className="flex flex-wrap items-center gap-5 sm:gap-8 font-mono text-xs">
           <span
             onMouseEnter={() =>
               window.dispatchEvent(
                 new CustomEvent('dog-react', { detail: { action: 'perk' } })
               )
             }
-            className="hover:text-[#FF5A2C] transition-colors cursor-pointer"
+            className="hover:text-[#B4441F] transition-colors cursor-pointer"
           >
-            BID: <strong className="text-[#ECE6D6]">{spreadData.bid.toFixed(2)}</strong>
+            BID: <strong className="text-[#1F1A14]">{spreadData.bid.toFixed(2)}</strong>
           </span>
           <span
             onMouseEnter={() =>
@@ -195,17 +195,17 @@ export function Hero() {
                 new CustomEvent('dog-react', { detail: { action: 'perk' } })
               )
             }
-            className="hover:text-[#FF5A2C] transition-colors cursor-pointer"
+            className="hover:text-[#B4441F] transition-colors cursor-pointer"
           >
-            ASK: <strong className="text-[#ECE6D6]">{spreadData.ask.toFixed(2)}</strong>
+            ASK: <strong className="text-[#1F1A14]">{spreadData.ask.toFixed(2)}</strong>
           </span>
           <span>
-            SPREAD: <strong className="text-[#9DB59A]">{spreadData.spread.toFixed(2)}</strong>
+            SPREAD: <strong className="text-[#5E6B3A]">{spreadData.spread.toFixed(2)}</strong>
           </span>
           <span className="hidden md:inline">
-            DEPTH: <strong className="text-[#ECE6D6]">{spreadData.depth}</strong>
+            DEPTH: <strong className="text-[#1F1A14]">{spreadData.depth}</strong>
           </span>
-          <span className="text-[#FF5A2C]">
+          <span className="text-[#B4441F]">
             LATENCY: <strong>{spreadData.latency}</strong>
           </span>
         </div>

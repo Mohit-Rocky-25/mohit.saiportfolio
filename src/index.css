@@ -2,17 +2,18 @@
 
 @layer base {
   :root {
-    --ground: #0E1411;
-    --parchment: #ECE6D6;
-    --vermilion: #FF5A2C;
-    --sage: #9DB59A;
+    --ground: #EAE2D1;
+    --ink: #1F1A14;
+    --muted: #6B6254;
+    --terracotta: #B4441F;
+    --olive: #5E6B3A;
     
-    --scene-repopilot: #0B1220;
-    --scene-hireflow: #1B2A1F;
-    --scene-unilang: #3A1F18;
+    --scene-repopilot: #D3DBDF;
+    --scene-hireflow: #D5DBC4;
+    --scene-unilang: #E6CDBF;
 
-    --hairline: rgba(236, 230, 214, 0.12);
-    --hairline-strong: rgba(236, 230, 214, 0.24);
+    --hairline: rgba(31, 26, 20, 0.14);
+    --hairline-strong: rgba(31, 26, 20, 0.28);
 
     --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
     --font-text: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -25,7 +26,7 @@
 
   html {
     background-color: var(--ground);
-    color: var(--parchment);
+    color: var(--ink);
     font-family: var(--font-text);
     font-size: 16px;
     line-height: 1.6;
@@ -35,14 +36,14 @@
 
   body {
     background-color: var(--ground);
-    color: var(--parchment);
+    color: var(--ink);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
   }
 
   a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--vermilion);
+    outline: 2px solid var(--terracotta);
     outline-offset: 3px;
   }
 }
@@ -58,7 +59,6 @@
 
 .font-mono {
   font-family: var(--font-mono);
-  letter-spacing: 0.08em;
 }
 
 /* Hairline utilities */
@@ -78,33 +78,33 @@
   border-right: 1px solid var(--hairline);
 }
 
-/* Subtle vermilion link underline draw */
-.vermilion-link {
+/* Deep terracotta link underline draw */
+.terracotta-link {
   position: relative;
   display: inline-block;
-  color: var(--parchment);
+  color: var(--ink);
   text-decoration: none;
   transition: color 0.25s ease;
 }
 
-.vermilion-link::after {
+.terracotta-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 100%;
   height: 1.5px;
-  background-color: var(--vermilion);
+  background-color: var(--terracotta);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.vermilion-link:hover {
-  color: var(--vermilion);
+.terracotta-link:hover {
+  color: var(--terracotta);
 }
 
-.vermilion-link:hover::after {
+.terracotta-link:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -123,6 +123,41 @@
   clip-path: inset(0 0 0 0 round 170px 170px 0 0);
 }
 
+/* Marquee keyframes */
+@keyframes marqueeLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 34s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 38s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+  }
+}
+
 /* Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
@@ -131,9 +166,9 @@
   background: var(--ground);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(236, 230, 214, 0.15);
+  background: rgba(31, 26, 20, 0.18);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--vermilion);
+  background: var(--terracotta);
 }

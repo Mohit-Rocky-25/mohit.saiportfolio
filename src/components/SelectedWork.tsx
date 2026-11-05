@@ -27,12 +27,14 @@ export function SelectedWork() {
     file: string
     line: number
     commit: string
-  } | null>({
+    purpose: string
+  }>({
     id: 'ast',
     name: 'SymbolExtractor',
     file: 'src/indexer/ast.ts',
     line: 142,
     commit: '7f3a9b2',
+    purpose: 'Extracts deterministic in-memory AST symbol graphs across languages.',
   })
 
   // HireFlow interactive demo state
@@ -51,7 +53,7 @@ export function SelectedWork() {
 
   // UniLang Web Audio demo state
   const [audioPlaying, setAudioPlaying] = useState(false)
-  const [cardInterval, setCardInterval] = useState('1d')
+  const [cardInterval, setCardInterval] = useState('1 day')
   const [reviewCount, setReviewCount] = useState(1)
 
   const playSynthesizedTone = () => {
@@ -84,10 +86,10 @@ export function SelectedWork() {
 
   const handleSpacedRepetition = (again: boolean) => {
     if (again) {
-      setCardInterval('10m')
+      setCardInterval('10 minutes')
     } else {
       setReviewCount((prev) => prev + 1)
-      setCardInterval(`${reviewCount * 3 + 1}d`)
+      setCardInterval(`${reviewCount * 3 + 1} days`)
     }
   }
 
@@ -100,69 +102,71 @@ export function SelectedWork() {
           new CustomEvent('dog-react', { detail: { action: 'idle-sit' } })
         )
       }}
-      className="relative min-h-screen transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] py-20 px-6 sm:px-10 lg:px-16 flex flex-col justify-between"
+      className="relative min-h-screen transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] py-20 px-6 sm:px-10 lg:px-16 flex flex-col justify-between text-[#1F1A14]"
     >
       {/* Top Header Rail */}
-      <div className="max-w-[1440px] mx-auto w-full flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[#ECE6D6]/12 pb-6 mb-12">
-        <div className="flex items-center gap-3 font-mono text-xs text-[#FF5A2C] uppercase tracking-widest">
-          <span>02</span>
+      <div className="max-w-[1440px] mx-auto w-full flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[#1F1A14]/14 pb-6 mb-12">
+        <div className="flex items-center gap-3 font-text text-[13px] text-[#B4441F]">
+          <span className="font-mono text-xs">02</span>
           <span>/</span>
-          <span>Selected Work</span>
-          <span className="text-[#ECE6D6]/30">|</span>
-          <span className="text-[#ECE6D6]/60">SCENE {activeProject.number} OF 03</span>
+          <span>Selected work</span>
+          <span className="text-[#1F1A14]/25">|</span>
+          <span className="text-[#6B6254]">Project {activeProject.number} of 03</span>
         </div>
 
-        <div className="font-mono text-xs text-[#ECE6D6]/50 mt-2 sm:mt-0">
-          USE [← / →] OR CLICK NUMBERS BELOW
+        <div className="font-text text-[13px] text-[#6B6254] mt-2 sm:mt-0">
+          Drag, scroll or use the arrow keys
         </div>
       </div>
 
-      {/* Main Scene Body */}
+      {/* Main Scene Body (NO BOXES, NO PANELS!) */}
       <div className="max-w-[1440px] mx-auto w-full my-auto py-6">
         <AnimatePresence mode="wait">
           {/* SCENE 01: RepoPilot */}
           {activeProject.id === 'repopilot' && (
             <motion.div
               key="repopilot"
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
             >
               {/* Left Column: Context & Decisions */}
               <div className="lg:col-span-6 space-y-6">
-                <span className="font-mono text-xs text-[#38BDF8] uppercase tracking-wider block">
-                  01 — Flagship Platform / 2024
-                </span>
+                <div className="flex items-center gap-2 font-mono text-xs text-[#5E6B3A]">
+                  <span>01</span>
+                  <span>•</span>
+                  <span>2024</span>
+                </div>
 
-                <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold text-[#ECE6D6] leading-[0.95] tracking-tight">
+                <h2 className="font-display text-[clamp(2.5rem,5.5vw,5rem)] font-bold text-[#1F1A14] leading-[0.95] tracking-tight">
                   RepoPilot
                 </h2>
 
-                <p className="font-text text-base sm:text-lg text-[#ECE6D6]/80 font-light leading-relaxed">
+                <p className="font-text text-base sm:text-lg text-[#1F1A14]/85 font-normal leading-relaxed">
                   {activeProject.brief}
                 </p>
 
                 {/* Built with as running text, slashes, NO chips */}
-                <div className="pt-4 border-t border-[#ECE6D6]/12">
-                  <span className="font-mono text-xs text-[#ECE6D6]/50 uppercase tracking-widest block mb-2">
-                    Built With
+                <div className="pt-4 border-t border-[#1F1A14]/14">
+                  <span className="font-text text-[13px] text-[#6B6254] block mb-2 font-medium">
+                    Built with
                   </span>
-                  <p className="font-mono text-xs sm:text-sm text-[#ECE6D6]/90 leading-relaxed">
+                  <p className="font-text text-sm text-[#1F1A14] leading-relaxed">
                     {activeProject.builtWith.join('  /  ')}
                   </p>
                 </div>
 
                 {/* Key Decisions */}
-                <div className="pt-4 border-t border-[#ECE6D6]/12">
-                  <span className="font-mono text-xs text-[#ECE6D6]/50 uppercase tracking-widest block mb-3">
-                    Key Decisions
+                <div className="pt-4 border-t border-[#1F1A14]/14">
+                  <span className="font-text text-[13px] text-[#6B6254] block mb-3 font-medium">
+                    Key decisions
                   </span>
-                  <ul className="space-y-2.5 font-text text-sm text-[#ECE6D6]/80">
+                  <ul className="space-y-2.5 font-text text-sm text-[#1F1A14]/85">
                     {activeProject.keyDecisions.map((line, idx) => (
                       <li key={idx} className="flex items-baseline gap-2.5">
-                        <span className="font-mono text-xs text-[#FF5A2C]">0{idx + 1}.</span>
+                        <span className="font-mono text-xs text-[#B4441F]">0{idx + 1}.</span>
                         <span>{line}</span>
                       </li>
                     ))}
@@ -170,12 +174,12 @@ export function SelectedWork() {
                 </div>
 
                 {/* Plain Links */}
-                <div className="pt-6 flex items-center gap-6 font-mono text-xs tracking-tight">
+                <div className="pt-6 flex items-center gap-6 font-text text-sm">
                   <a
                     href={activeProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="vermilion-link"
+                    className="terracotta-link font-medium"
                   >
                     Source on GitHub →
                   </a>
@@ -184,7 +188,7 @@ export function SelectedWork() {
                       href={activeProject.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="vermilion-link text-[#38BDF8]"
+                      className="terracotta-link text-[#B4441F]"
                     >
                       Live site ↗
                     </a>
@@ -192,50 +196,63 @@ export function SelectedWork() {
                 </div>
               </div>
 
-              {/* Right Column: Working Mini-Demo (File & Symbol Dependency Tree) */}
-              <div className="lg:col-span-6 bg-[#0E1411]/80 border border-[#ECE6D6]/12 p-6 sm:p-8 rounded-xl relative select-none">
-                <div className="flex items-center justify-between font-mono text-xs text-[#ECE6D6]/50 mb-6 border-b border-[#ECE6D6]/10 pb-3">
-                  <span className="text-[#38BDF8]">AST Symbol Dependency Graph</span>
-                  <span>Click symbol to inspect citation</span>
+              {/* Right Column: Working Mini-Demo (NO BOXES, NO PANELS!) */}
+              <div className="lg:col-span-6 space-y-6 pt-2">
+                <div className="flex items-center justify-between font-text text-[13px] text-[#6B6254] border-b border-[#1F1A14]/14 pb-3">
+                  <span className="text-[#B4441F] font-medium">AST symbol dependency graph</span>
+                  <span>Select a symbol to inspect citation</span>
                 </div>
 
-                {/* Interactive Symbol Nodes */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
+                {/* Plain Text Rows with terracotta dot for active state (No boxes!) */}
+                <div className="divide-y divide-[#1F1A14]/10 border-b border-[#1F1A14]/14">
                   {[
-                    { id: 'ast', name: 'SymbolExtractor', file: 'src/indexer/ast.ts', line: 142, commit: '7f3a9b2' },
-                    { id: 'search', name: 'RankedSearch', file: 'src/core/search.ts', line: 88, commit: '7f3a9b2' },
-                    { id: 'diff', name: 'MemorySandbox', file: 'src/diff/sandbox.ts', line: 204, commit: '7f3a9b2' },
-                    { id: 'graph', name: '3DArchitecture', file: 'src/visual/graph.ts', line: 56, commit: '7f3a9b2' },
-                  ].map((node) => (
-                    <button
-                      key={node.id}
-                      onClick={() => setSelectedNode(node)}
-                      className={`p-3 text-left font-mono text-xs border transition-all ${
-                        selectedNode?.id === node.id
-                          ? 'border-[#38BDF8] bg-[#38BDF8]/10 text-[#ECE6D6]'
-                          : 'border-[#ECE6D6]/10 bg-[#0E1411]/50 text-[#ECE6D6]/70 hover:border-[#ECE6D6]/30'
-                      }`}
-                    >
-                      <div className="text-[10px] text-[#38BDF8]">fn()</div>
-                      <div className="font-semibold mt-1">{node.name}</div>
-                    </button>
-                  ))}
+                    { id: 'ast', name: 'SymbolExtractor', file: 'src/indexer/ast.ts', line: 142, commit: '7f3a9b2', purpose: 'Extracts deterministic in-memory AST symbol graphs across languages.' },
+                    { id: 'search', name: 'RankedSearch', file: 'src/core/search.ts', line: 88, commit: '7f3a9b2', purpose: 'Scores repository terms locally using token distance metrics.' },
+                    { id: 'diff', name: 'MemorySandbox', file: 'src/diff/sandbox.ts', line: 204, commit: '7f3a9b2', purpose: 'Validates proposed code changes against pinned commit line ranges.' },
+                    { id: 'graph', name: 'ArchitectureGraph', file: 'src/visual/graph.ts', line: 56, commit: '7f3a9b2', purpose: 'Maps component dependency edges without cloud API latency.' },
+                  ].map((node) => {
+                    const isSelected = selectedNode?.id === node.id
+                    return (
+                      <button
+                        key={node.id}
+                        onClick={() => setSelectedNode(node)}
+                        className="w-full py-3.5 flex items-center justify-between text-left group transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`w-2 h-2 rounded-full transition-transform ${
+                              isSelected ? 'bg-[#B4441F] scale-125' : 'bg-[#1F1A14]/20 group-hover:bg-[#B4441F]/60'
+                            }`}
+                          />
+                          <span
+                            className={`font-text text-sm transition-colors ${
+                              isSelected ? 'text-[#B4441F] font-semibold' : 'text-[#1F1A14] group-hover:text-[#B4441F]'
+                            }`}
+                          >
+                            {node.name}
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs text-[#6B6254] group-hover:underline">
+                          {node.file}
+                        </span>
+                      </button>
+                    )
+                  })}
                 </div>
 
-                {/* Grounded Citation Popover */}
+                {/* Grounded Citation Display (Directly on background, separated by hairlines) */}
                 {selectedNode && (
-                  <div className="p-4 rounded-lg bg-[#0B1220] border border-[#38BDF8]/40 font-mono text-xs space-y-2 animate-in fade-in">
-                    <div className="flex items-center justify-between text-[#38BDF8] text-[11px]">
-                      <span>VERIFIED CITATION</span>
-                      <span>IMMUTABLE SHA</span>
+                  <div className="pt-4 border-t border-[#1F1A14]/14 space-y-2 font-text text-sm">
+                    <div className="flex items-center justify-between text-[#B4441F] text-xs font-medium">
+                      <span>Verified citation</span>
+                      <span className="font-mono">Commit: {selectedNode.commit}</span>
                     </div>
-                    <div className="text-[#ECE6D6] text-sm font-semibold">
+                    <div className="font-mono text-xs text-[#1F1A14] font-semibold">
                       {selectedNode.file}:{selectedNode.line}
                     </div>
-                    <div className="text-[#ECE6D6]/60 text-[11px] flex justify-between">
-                      <span>Commit: {selectedNode.commit}</span>
-                      <span className="text-[#4ADE80]">Zero LLM Hallucination</span>
-                    </div>
+                    <p className="text-xs text-[#6B6254] leading-relaxed">
+                      {selectedNode.purpose} Every citation is tied to an immutable commit SHA.
+                    </p>
                   </div>
                 )}
               </div>
@@ -246,45 +263,47 @@ export function SelectedWork() {
           {activeProject.id === 'hireflow' && (
             <motion.div
               key="hireflow"
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
             >
               {/* Left Column: Context & Invariants */}
               <div className="lg:col-span-6 space-y-6">
-                <span className="font-mono text-xs text-[#4ADE80] uppercase tracking-wider block">
-                  02 — Privacy-First Systems / 2024
-                </span>
+                <div className="flex items-center gap-2 font-mono text-xs text-[#5E6B3A]">
+                  <span>02</span>
+                  <span>•</span>
+                  <span>2024</span>
+                </div>
 
-                <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold text-[#ECE6D6] leading-[0.95] tracking-tight">
+                <h2 className="font-display text-[clamp(2.5rem,5.5vw,5rem)] font-bold text-[#1F1A14] leading-[0.95] tracking-tight">
                   HireFlow
                 </h2>
 
-                <p className="font-text text-base sm:text-lg text-[#ECE6D6]/80 font-light leading-relaxed">
+                <p className="font-text text-base sm:text-lg text-[#1F1A14]/85 font-normal leading-relaxed">
                   {activeProject.brief}
                 </p>
 
                 {/* Built with as running text, slashes, NO chips */}
-                <div className="pt-4 border-t border-[#ECE6D6]/12">
-                  <span className="font-mono text-xs text-[#ECE6D6]/50 uppercase tracking-widest block mb-2">
-                    Built With
+                <div className="pt-4 border-t border-[#1F1A14]/14">
+                  <span className="font-text text-[13px] text-[#6B6254] block mb-2 font-medium">
+                    Built with
                   </span>
-                  <p className="font-mono text-xs sm:text-sm text-[#ECE6D6]/90 leading-relaxed">
+                  <p className="font-text text-sm text-[#1F1A14] leading-relaxed">
                     {activeProject.builtWith.join('  /  ')}
                   </p>
                 </div>
 
                 {/* Key Decisions */}
-                <div className="pt-4 border-t border-[#ECE6D6]/12">
-                  <span className="font-mono text-xs text-[#ECE6D6]/50 uppercase tracking-widest block mb-3">
-                    Key Decisions
+                <div className="pt-4 border-t border-[#1F1A14]/14">
+                  <span className="font-text text-[13px] text-[#6B6254] block mb-3 font-medium">
+                    Key decisions
                   </span>
-                  <ul className="space-y-2.5 font-text text-sm text-[#ECE6D6]/80">
+                  <ul className="space-y-2.5 font-text text-sm text-[#1F1A14]/85">
                     {activeProject.keyDecisions.map((line, idx) => (
                       <li key={idx} className="flex items-baseline gap-2.5">
-                        <span className="font-mono text-xs text-[#4ADE80]">0{idx + 1}.</span>
+                        <span className="font-mono text-xs text-[#B4441F]">0{idx + 1}.</span>
                         <span>{line}</span>
                       </li>
                     ))}
@@ -292,56 +311,61 @@ export function SelectedWork() {
                 </div>
 
                 {/* Plain Links */}
-                <div className="pt-6 flex items-center gap-6 font-mono text-xs tracking-tight">
+                <div className="pt-6 flex items-center gap-6 font-text text-sm">
                   <a
                     href={activeProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="vermilion-link"
+                    className="terracotta-link font-medium"
                   >
                     Source on GitHub →
                   </a>
                 </div>
               </div>
 
-              {/* Right Column: Working Mini-Demo (Client-Side ATS Parser & Drop Zone) */}
-              <div className="lg:col-span-6 bg-[#0E1411]/80 border border-[#ECE6D6]/12 p-6 sm:p-8 rounded-xl relative">
-                <div className="flex items-center justify-between font-mono text-xs text-[#ECE6D6]/50 mb-6 border-b border-[#ECE6D6]/10 pb-3">
-                  <span className="text-[#4ADE80]">100% In-Browser ATS Diagnostic</span>
-                  <span>Static Client-Side Sample</span>
+              {/* Right Column: Working Mini-Demo (NO BOXES, NO PANELS!) */}
+              <div className="lg:col-span-6 space-y-6 pt-2">
+                <div className="flex items-center justify-between font-text text-[13px] text-[#6B6254] border-b border-[#1F1A14]/14 pb-3">
+                  <span className="text-[#5E6B3A] font-medium">Client-side resume parser</span>
+                  <span>Static sample evaluation</span>
                 </div>
 
-                {/* Drop Zone Box */}
-                <div className="p-6 border border-dashed border-[#ECE6D6]/20 rounded-lg text-center mb-6">
-                  <p className="font-mono text-xs text-[#ECE6D6]/70 mb-3">
-                    Sample Resume: <span className="text-[#ECE6D6] font-semibold">candidate_systems_resume.pdf</span>
-                  </p>
+                {/* Plain Text Trigger Area (No boxes!) */}
+                <div className="py-4 border-b border-[#1F1A14]/14 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="font-text text-sm font-semibold text-[#1F1A14]">
+                      candidate_systems_resume.pdf
+                    </div>
+                    <div className="text-xs text-[#6B6254] mt-0.5">
+                      Evaluated directly in browser memory without server upload
+                    </div>
+                  </div>
                   <button
                     onClick={handleParseSample}
-                    className="px-4 py-2 rounded bg-[#1B2A1F] border border-[#4ADE80]/40 text-[#ECE6D6] font-mono text-xs hover:bg-[#4ADE80]/20 transition-colors"
+                    className="self-start sm:self-auto px-4 py-2 border border-[#1F1A14]/20 hover:border-[#B4441F] text-[#1F1A14] hover:text-[#B4441F] font-text text-xs transition-colors"
                   >
-                    {parsingStep > 0 && parsingStep < 3 ? 'Parsing binary stream...' : 'Run Client-Side Parsing'}
+                    {parsingStep > 0 && parsingStep < 3 ? 'Parsing stream...' : 'Run sample diagnostic'}
                   </button>
                 </div>
 
-                {/* Parse Results */}
+                {/* Parse Results directly on scene background */}
                 {resumeParsed && (
-                  <div className="space-y-4 font-mono text-xs animate-in fade-in">
-                    <div className="flex items-center justify-between p-3 rounded bg-[#1B2A1F]/60 border border-[#4ADE80]/30">
-                      <span>Job Description Match Confidence</span>
-                      <strong className="text-[#4ADE80] text-sm">86% MATCH</strong>
+                  <div className="space-y-5 pt-2 animate-in fade-in">
+                    <div className="flex items-baseline justify-between border-b border-[#1F1A14]/10 pb-3">
+                      <span className="text-sm font-text text-[#1F1A14]">Job description evidence ratio</span>
+                      <strong className="text-[#5E6B3A] text-lg font-display">86% match</strong>
                     </div>
 
-                    <div>
-                      <div className="text-[11px] text-[#ECE6D6]/60 mb-1.5">VERBATIM EXTRACTED SECTIONS:</div>
-                      <div className="text-[#ECE6D6] leading-relaxed">
-                        Hard Skills, Fresher Readiness, Systems Invariants, Vitest Suites
+                    <div className="space-y-1">
+                      <div className="text-xs font-text text-[#6B6254] font-medium">Extracted sections:</div>
+                      <div className="text-sm text-[#1F1A14]">
+                        Hard Skills, Systems Invariants, Vitest Suites, Education
                       </div>
                     </div>
 
-                    <div>
-                      <div className="text-[11px] text-[#FF5A2C] mb-1.5">IDENTIFIED RECRUITER SKILL GAPS:</div>
-                      <div className="text-[#FF5A2C] font-semibold">
+                    <div className="space-y-1">
+                      <div className="text-xs font-text text-[#B4441F] font-medium">Missing requirements:</div>
+                      <div className="text-sm text-[#B4441F]">
                         Distributed Cache, Kernel Bypass (eBPF)
                       </div>
                     </div>
@@ -355,45 +379,47 @@ export function SelectedWork() {
           {activeProject.id === 'unilang' && (
             <motion.div
               key="unilang"
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
             >
               {/* Left Column: Context (Quieter, smaller weight) */}
               <div className="lg:col-span-6 space-y-6">
-                <span className="font-mono text-xs text-[#FB923C] uppercase tracking-wider block">
-                  03 — Linguistic Acoustics / 2024
-                </span>
+                <div className="flex items-center gap-2 font-mono text-xs text-[#5E6B3A]">
+                  <span>03</span>
+                  <span>•</span>
+                  <span>2024</span>
+                </div>
 
-                <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] font-bold text-[#ECE6D6] leading-[0.95] tracking-tight">
+                <h2 className="font-display text-[clamp(2.2rem,4.5vw,4.2rem)] font-bold text-[#1F1A14] leading-[0.95] tracking-tight">
                   UniLang
                 </h2>
 
-                <p className="font-text text-sm sm:text-base text-[#ECE6D6]/70 font-light leading-relaxed">
+                <p className="font-text text-sm sm:text-base text-[#1F1A14]/80 font-normal leading-relaxed">
                   {activeProject.brief}
                 </p>
 
                 {/* Built with */}
-                <div className="pt-4 border-t border-[#ECE6D6]/12">
-                  <span className="font-mono text-xs text-[#ECE6D6]/50 uppercase tracking-widest block mb-2">
-                    Built With
+                <div className="pt-4 border-t border-[#1F1A14]/14">
+                  <span className="font-text text-[13px] text-[#6B6254] block mb-2 font-medium">
+                    Built with
                   </span>
-                  <p className="font-mono text-xs sm:text-sm text-[#ECE6D6]/90 leading-relaxed">
+                  <p className="font-text text-sm text-[#1F1A14] leading-relaxed">
                     {activeProject.builtWith.join('  /  ')}
                   </p>
                 </div>
 
                 {/* Key Decisions */}
-                <div className="pt-4 border-t border-[#ECE6D6]/12">
-                  <span className="font-mono text-xs text-[#ECE6D6]/50 uppercase tracking-widest block mb-3">
-                    Key Decisions
+                <div className="pt-4 border-t border-[#1F1A14]/14">
+                  <span className="font-text text-[13px] text-[#6B6254] block mb-3 font-medium">
+                    Key decisions
                   </span>
-                  <ul className="space-y-2.5 font-text text-sm text-[#ECE6D6]/80">
+                  <ul className="space-y-2.5 font-text text-sm text-[#1F1A14]/85">
                     {activeProject.keyDecisions.map((line, idx) => (
                       <li key={idx} className="flex items-baseline gap-2.5">
-                        <span className="font-mono text-xs text-[#FB923C]">0{idx + 1}.</span>
+                        <span className="font-mono text-xs text-[#B4441F]">0{idx + 1}.</span>
                         <span>{line}</span>
                       </li>
                     ))}
@@ -401,12 +427,12 @@ export function SelectedWork() {
                 </div>
 
                 {/* Plain Links */}
-                <div className="pt-6 flex items-center gap-6 font-mono text-xs tracking-tight">
+                <div className="pt-6 flex items-center gap-6 font-text text-sm">
                   <a
                     href={activeProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="vermilion-link"
+                    className="terracotta-link font-medium"
                   >
                     Source on GitHub →
                   </a>
@@ -415,7 +441,7 @@ export function SelectedWork() {
                       href={activeProject.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="vermilion-link text-[#FB923C]"
+                      className="terracotta-link text-[#B4441F]"
                     >
                       Live site ↗
                     </a>
@@ -423,45 +449,45 @@ export function SelectedWork() {
                 </div>
               </div>
 
-              {/* Right Column: Working Mini-Demo (Spaced-Repetition & Web Audio Acoustic Synthesizer) */}
-              <div className="lg:col-span-6 bg-[#0E1411]/80 border border-[#ECE6D6]/12 p-6 sm:p-8 rounded-xl relative">
-                <div className="flex items-center justify-between font-mono text-xs text-[#ECE6D6]/50 mb-6 border-b border-[#ECE6D6]/10 pb-3">
-                  <span className="text-[#FB923C]">Acoustic Pronunciation & Spaced Recall</span>
+              {/* Right Column: Working Mini-Demo (NO BOXES, NO PANELS!) */}
+              <div className="lg:col-span-6 space-y-6 pt-2">
+                <div className="flex items-center justify-between font-text text-[13px] text-[#6B6254] border-b border-[#1F1A14]/14 pb-3">
+                  <span className="text-[#B4441F] font-medium">Acoustic pronunciation & spaced recall</span>
                   <span>Web Audio API</span>
                 </div>
 
-                {/* Word Card */}
-                <div className="p-8 border border-[#ECE6D6]/14 rounded-lg bg-[#3A1F18]/40 text-center mb-6">
-                  <div className="font-mono text-xs text-[#FB923C] mb-2">PORTUGUESE CONCEPT</div>
-                  <div className="font-serif text-3xl sm:text-4xl italic text-[#ECE6D6] mb-2">Saudade</div>
-                  <div className="font-text text-sm text-[#ECE6D6]/70 mb-6">
-                    A profound state of nostalgic longing for an absent thing or person.
-                  </div>
+                {/* Word Display directly on background */}
+                <div className="py-6 border-b border-[#1F1A14]/14 space-y-3">
+                  <div className="font-text text-xs text-[#5E6B3A] font-medium">Portuguese cultural concept</div>
+                  <div className="font-serif text-3xl sm:text-4xl italic text-[#1F1A14]">Saudade</div>
+                  <p className="font-text text-sm text-[#1F1A14]/80 max-w-md">
+                    A state of nostalgic longing for an absent presence, person, or time.
+                  </p>
 
-                  <div className="flex items-center justify-center gap-4">
+                  <div className="pt-2">
                     <button
                       onClick={playSynthesizedTone}
-                      className="px-4 py-2 rounded bg-[#FB923C] text-[#0E1411] font-mono text-xs font-bold hover:bg-[#FB923C]/90 transition-all flex items-center gap-2"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-[#B4441F] text-[#B4441F] hover:bg-[#B4441F] hover:text-[#EAE2D1] font-text text-xs transition-colors"
                     >
-                      <span>Hear Pronunciation</span>
+                      <span>Hear pronunciation</span>
                       <span className={audioPlaying ? 'animate-spin' : ''}>♪</span>
                     </button>
                   </div>
                 </div>
 
                 {/* Spaced Repetition Rescheduler */}
-                <div className="flex items-center justify-between pt-4 border-t border-[#ECE6D6]/10 font-mono text-xs text-[#ECE6D6]/70">
-                  <span>Current Interval: <strong className="text-[#FB923C]">{cardInterval}</strong></span>
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between pt-2 font-text text-xs text-[#6B6254]">
+                  <span>Next interval: <strong className="text-[#1F1A14] font-mono">{cardInterval}</strong></span>
+                  <div className="flex items-center gap-3">
                     <button
                       onClick={() => handleSpacedRepetition(true)}
-                      className="px-3 py-1 rounded border border-[#ECE6D6]/20 hover:border-[#FF5A2C] transition-colors"
+                      className="hover:text-[#B4441F] underline transition-colors"
                     >
                       Again
                     </button>
                     <button
                       onClick={() => handleSpacedRepetition(false)}
-                      className="px-3 py-1 rounded bg-[#ECE6D6]/10 border border-[#ECE6D6]/30 text-[#ECE6D6] hover:bg-[#ECE6D6]/20 transition-colors"
+                      className="text-[#1F1A14] font-semibold underline hover:text-[#5E6B3A] transition-colors"
                     >
                       Got it
                     </button>
@@ -474,7 +500,7 @@ export function SelectedWork() {
       </div>
 
       {/* Bottom Scene Indicators & Progress */}
-      <div className="max-w-[1440px] mx-auto w-full pt-8 border-t border-[#ECE6D6]/12 flex items-center justify-between font-mono text-xs">
+      <div className="max-w-[1440px] mx-auto w-full pt-8 border-t border-[#1F1A14]/14 flex items-center justify-between font-text text-xs">
         <div className="flex items-center gap-6">
           {projects.map((proj, idx) => (
             <button
@@ -482,17 +508,18 @@ export function SelectedWork() {
               onClick={() => setActiveSceneIndex(idx)}
               className={`transition-colors py-1 ${
                 activeSceneIndex === idx
-                  ? 'text-[#FF5A2C] font-bold border-b-2 border-[#FF5A2C]'
-                  : 'text-[#ECE6D6]/40 hover:text-[#ECE6D6]'
+                  ? 'text-[#B4441F] font-bold border-b-2 border-[#B4441F]'
+                  : 'text-[#6B6254] hover:text-[#1F1A14]'
               }`}
             >
-              {proj.number} {proj.title}
+              <span className="font-mono text-xs mr-1">{proj.number}</span>
+              <span>{proj.title}</span>
             </button>
           ))}
         </div>
 
-        <div className="text-[#ECE6D6]/40 hidden sm:block">
-          HOLD 60FPS · NATIVE HARDWARE ACCELERATION
+        <div className="text-[#6B6254] hidden sm:block">
+          Select or use arrow keys
         </div>
       </div>
     </section>

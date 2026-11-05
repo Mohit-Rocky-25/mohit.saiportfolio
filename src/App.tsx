@@ -40,7 +40,7 @@ export function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#0E1411] text-[#ECE6D6] relative selection:bg-[#FF5A2C] selection:text-[#0E1411]">
+    <div className="min-h-screen bg-[#EAE2D1] text-[#1F1A14] relative selection:bg-[#B4441F] selection:text-[#EAE2D1]">
       {/* Short preloader */}
       <Preloader onComplete={() => setPreloaderFinished(true)} />
 

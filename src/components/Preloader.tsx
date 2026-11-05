@@ -13,7 +13,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
     const timer = setTimeout(() => {
       setVisible(false)
       onComplete()
-    }, 1400)
+    }, 1300)
     return () => clearTimeout(timer)
   }, [onComplete])
 
@@ -25,14 +25,14 @@ export function Preloader({ onComplete }: PreloaderProps) {
           initial={{ opacity: 1 }}
           exit={{
             y: '-100%',
-            transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+            transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
           }}
-          className="fixed inset-0 z-[100] bg-[#0E1411] flex flex-col justify-between p-8 md:p-14 select-none"
+          className="fixed inset-0 z-[100] bg-[#EAE2D1] flex flex-col justify-between p-8 md:p-14 select-none"
         >
           {/* Top rail */}
-          <div className="flex justify-between items-center text-xs font-mono tracking-widest text-[#9DB59A] uppercase">
-            <span>YMS WORKSHOP</span>
-            <span>{PORTFOLIO_CONFIG.profile.currentYear}</span>
+          <div className="flex justify-between items-center text-xs font-text text-[#5E6B3A]">
+            <span>Mohit Sai — Portfolio</span>
+            <span className="font-mono">{PORTFOLIO_CONFIG.profile.currentYear}</span>
           </div>
 
           {/* Center: Dog trotting across thin line while name fades in */}
@@ -41,38 +41,38 @@ export function Preloader({ onComplete }: PreloaderProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-3xl sm:text-4xl font-bold text-[#ECE6D6] tracking-tight text-center"
+              className="font-display text-3xl sm:text-4xl font-bold text-[#1F1A14] tracking-tight text-center"
             >
               {PORTFOLIO_CONFIG.profile.name}
             </motion.h2>
 
             {/* Line with animated dog */}
-            <div className="relative w-full h-[1px] bg-[#ECE6D6]/15">
+            <div className="relative w-full h-[1px] bg-[#1F1A14]/14">
               <motion.div
                 initial={{ left: '0%' }}
                 animate={{ left: '95%' }}
-                transition={{ duration: 1.25, ease: 'linear' }}
+                transition={{ duration: 1.2, ease: 'linear' }}
                 className="absolute -top-6 -translate-x-1/2"
               >
                 {/* Pixel Dog Icon */}
                 <svg width="24" height="20" viewBox="0 0 20 17" style={{ imageRendering: 'pixelated' }}>
-                  <rect x="5" y="7" width="9" height="6" fill="#ECE6D6" rx="1" />
-                  <rect x="7" y="8" width="3" height="3" fill="#8A7E6C" />
-                  <rect x="11" y="4" width="6" height="5" fill="#ECE6D6" rx="1" />
-                  <rect x="17" y="6" width="1.5" height="1.5" fill="#1C1915" />
-                  <rect x="11" y="7.5" width="2" height="1" fill="#FF5A2C" />
-                  <rect x="6" y="12" width="2" height="3" fill="#ECE6D6" />
-                  <rect x="12" y="12" width="2" height="3" fill="#ECE6D6" />
-                  <path d="M 5 8 Q 2 5 3 3" stroke="#ECE6D6" strokeWidth="1.5" fill="none" />
+                  <rect x="5" y="7" width="9" height="6" fill="#1F1A14" rx="1" />
+                  <rect x="7" y="8" width="3" height="3" fill="#A39B8B" />
+                  <rect x="11" y="4" width="6" height="5" fill="#1F1A14" rx="1" />
+                  <rect x="17" y="6" width="1.5" height="1.5" fill="#B4441F" />
+                  <rect x="11" y="7.5" width="2" height="1" fill="#B4441F" />
+                  <rect x="6" y="12" width="2" height="3" fill="#1F1A14" />
+                  <rect x="12" y="12" width="2" height="3" fill="#1F1A14" />
+                  <path d="M 5 8 Q 2 5 3 3" stroke="#1F1A14" strokeWidth="1.5" fill="none" />
                 </svg>
               </motion.div>
             </div>
           </div>
 
           {/* Bottom rail */}
-          <div className="flex justify-between items-center text-xs font-mono text-[#ECE6D6]/40">
-            <span>CSE CORE · VIT-AP</span>
-            <span>INITIALIZING...</span>
+          <div className="flex justify-between items-center text-xs font-text text-[#6B6254]">
+            <span>CSE Core · VIT-AP</span>
+            <span>Loading workspace...</span>
           </div>
         </motion.div>
       )}

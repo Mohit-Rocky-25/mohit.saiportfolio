@@ -1,6 +1,6 @@
 /**
  * Personal Portfolio Configuration & Content Registry
- * Y. Mohit Sai — Workshop Aesthetic
+ * Y. Mohit Sai — Light Linen & Terracotta Palette
  */
 
 export interface ProjectScene {
@@ -43,27 +43,27 @@ export const PORTFOLIO_CONFIG = {
       institution: 'VIT-AP University',
       degree: 'B.Tech in Computer Science and Engineering',
       discipline: 'CSE Core',
-      note: 'Focus on algorithms, low-level concurrency, compiler design, and operating systems.',
+      note: 'Foundations in design and analysis of algorithms, low-level concurrency, compiler theory, and operating systems.',
     },
     {
       period: 'Completed',
       institution: 'Narayana Junior College, Kurnool',
       degree: '12th Grade / Intermediate',
       discipline: 'MPC (Mathematics, Physics, Chemistry)',
-      note: 'Strong mathematical foundation, calculus, and analytical problem-solving aptitude.',
+      note: 'Senior secondary coursework in higher mathematics, analytical geometry, calculus, and physics.',
     },
   ],
 
   passions: {
     competitiveProgramming: {
       title: 'Competitive Programming',
-      statement: 'I approach algorithms as the high-stakes discipline of deterministic optimality.',
-      prose: 'Writing code under clock pressure demands mathematical rigor: proving tight asymptotic bounds between O(1) and O(N log N), exploiting spatial cache locality, and designing invariants that never yield under adversarial edge cases.',
+      statement: 'The discipline of deterministic problem solving under strict wall-clock bounds.',
+      prose: 'Writing code under clock pressure demands mathematical rigor: proving tight asymptotic bounds between O(1) and O(N log N), exploiting spatial cache locality, and structuring invariants that never fail against adversarial edge cases.',
     },
     highFrequencyTrading: {
       title: 'High-Frequency Trading',
       statement: 'Fascinated by market microstructure and microsecond deterministic execution.',
-      prose: 'Drawn to sub-microsecond low-latency engineering: reconstructing Level 2/3 order books, architecting lock-free ring buffers, removing dynamic allocations from the hot path, and minimizing tail latency jitter.',
+      prose: 'Drawn to sub-microsecond low-latency engineering: reconstructing Level 2/3 order books, architecting lock-free ring buffers, removing dynamic memory allocations from the hot path, and minimizing tail latency jitter.',
     },
   },
 
@@ -73,9 +73,9 @@ export const PORTFOLIO_CONFIG = {
       number: '01',
       title: 'RepoPilot',
       tagline: 'Codebase intelligence, AST symbol extraction, and grounded citations.',
-      brief: 'An independent codebase intelligence platform that maps unfamiliar repositories with in-memory AST symbol trees, ranked code search on local compute, and commit-SHA tied citations that eliminate LLM hallucinations.',
-      sceneBackground: '#0B1220', // ink-navy
-      accentColor: '#38BDF8',
+      brief: 'An independent codebase intelligence platform that maps unfamiliar repositories with in-memory AST symbol trees, ranked code search on local compute, and citations tied to immutable commit SHAs.',
+      sceneBackground: '#D3DBDF', // misty blue-grey
+      accentColor: '#B4441F',
       isPrimary: true,
       builtWith: [
         'Next.js 14',
@@ -102,8 +102,8 @@ export const PORTFOLIO_CONFIG = {
       title: 'HireFlow',
       tagline: 'Client-side career intelligence with pure in-browser PDF/DOCX stream parsing.',
       brief: 'A privacy-first career toolkit for early-career developers. Text extraction and resume evaluations run 100% in browser memory via pdfjs-dist and pdf-lib, featuring an ATS Resume Roaster and greedy set-cover project brief recommendations.',
-      sceneBackground: '#1B2A1F', // moss
-      accentColor: '#4ADE80',
+      sceneBackground: '#D5DBC4', // soft sage
+      accentColor: '#5E6B3A',
       isPrimary: true,
       builtWith: [
         'React 19',
@@ -131,8 +131,8 @@ export const PORTFOLIO_CONFIG = {
       title: 'UniLang',
       tagline: 'Contextual language learning with Web Audio acoustics and spaced repetition.',
       brief: 'An immersive language learning platform coupling structured conversational scenarios with real-time acoustic pronunciation feedback via the Web Audio API and dynamic spaced-repetition intervals.',
-      sceneBackground: '#3A1F18', // warm clay
-      accentColor: '#FB923C',
+      sceneBackground: '#E6CDBF', // rose clay
+      accentColor: '#B4441F',
       isPrimary: false,
       builtWith: [
         'React',
@@ -154,49 +154,46 @@ export const PORTFOLIO_CONFIG = {
   ] as ProjectScene[],
 
   skills: {
-    clusters: [
+    marqueeLine1: [
+      { text: 'TypeScript', italic: false, project: 'repopilot' },
+      { text: 'Python', italic: true, project: 'repopilot' },
+      { text: 'C++', italic: false, project: 'all' },
+      { text: 'Go', italic: true, project: 'repopilot' },
+      { text: 'Java', italic: false, project: 'all' },
+      { text: 'Next.js 14', italic: true, project: 'repopilot' },
+      { text: 'React 19', italic: false, project: 'hireflow' },
+      { text: 'Vite', italic: true, project: 'hireflow' },
+      { text: 'Tailwind CSS', italic: false, project: 'repopilot' },
+      { text: 'AST Parsers', italic: true, project: 'repopilot' },
+    ],
+    marqueeLine2: [
+      { text: 'Vitest (1,074+ Tests)', italic: false, project: 'hireflow' },
+      { text: 'Docker', italic: true, project: 'repopilot' },
+      { text: 'Zustand', italic: false, project: 'hireflow' },
+      { text: 'Zod Schemas', italic: true, project: 'hireflow' },
+      { text: 'Framer Motion', italic: false, project: 'hireflow' },
+      { text: 'Web Audio API', italic: true, project: 'unilang' },
+      { text: 'In-Memory PDF Parsing', italic: false, project: 'hireflow' },
+      { text: 'Git CLI', italic: true, project: 'repopilot' },
+      { text: 'Linux', italic: false, project: 'repopilot' },
+      { text: 'Vercel', italic: true, project: 'repopilot' },
+    ],
+    index: [
       {
         category: 'Languages',
-        skills: [
-          { name: 'TypeScript', projects: ['repopilot', 'hireflow', 'unilang'] },
-          { name: 'Python', projects: ['repopilot'] },
-          { name: 'C++', projects: [] },
-          { name: 'Go', projects: ['repopilot'] },
-          { name: 'Java', projects: [] },
-          { name: 'JavaScript', projects: ['hireflow', 'unilang'] },
-          { name: 'SQL', projects: [] },
-        ],
+        terms: ['TypeScript (Strict)', 'Python', 'C++', 'Go', 'Java', 'JavaScript (ESNext)', 'SQL', 'HTML5 / CSS3'],
       },
       {
         category: 'Frontend & UI',
-        skills: [
-          { name: 'React 19', projects: ['hireflow', 'unilang'] },
-          { name: 'Next.js 14', projects: ['repopilot', 'unilang'] },
-          { name: 'Vite', projects: ['hireflow'] },
-          { name: 'Tailwind CSS', projects: ['repopilot', 'hireflow', 'unilang'] },
-          { name: 'Zustand', projects: ['hireflow'] },
-          { name: 'Web Audio API', projects: ['unilang'] },
-        ],
+        terms: ['React 19', 'Next.js 14', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'Web Audio API'],
       },
       {
         category: 'Systems & Architecture',
-        skills: [
-          { name: 'AST Symbol Parsers', projects: ['repopilot'] },
-          { name: 'In-Memory Stream Parsing', projects: ['hireflow'] },
-          { name: 'Deterministic Sandboxing', projects: ['repopilot'] },
-          { name: 'Order Book Microstructure', projects: [] },
-          { name: 'Data Structures & Algorithms', projects: [] },
-        ],
+        terms: ['Data Structures & Algorithms', 'AST Symbol Extraction', 'In-Memory Stream Parsing', 'Deterministic Sandboxing', 'Order Book Mechanics', 'Truth Gate Invariants'],
       },
       {
         category: 'Tooling & Testing',
-        skills: [
-          { name: 'Vitest (1,074+ Tests)', projects: ['repopilot', 'hireflow'] },
-          { name: 'Docker', projects: ['repopilot'] },
-          { name: 'Git & GitHub CLI', projects: ['repopilot', 'hireflow', 'unilang'] },
-          { name: 'Zod Runtime Validation', projects: ['hireflow'] },
-          { name: 'Linux', projects: ['repopilot'] },
-        ],
+        terms: ['Vitest (Automated Test Suites)', 'Docker', 'Git & GitHub CLI', 'Zod Runtime Schemas', 'Linux Shell', 'Vercel Deployment'],
       },
     ],
   },
