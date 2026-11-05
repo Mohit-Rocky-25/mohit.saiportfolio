@@ -1,97 +1,85 @@
-import React from 'react'
-import { soundFX } from '../utils/audio'
-import { PORTFOLIO_DATA } from '../data/portfolioData'
-import { ArrowUp, Mail, Check, Copy } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from './Icons'
+import { useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { PORTFOLIO_CONFIG } from '../data/config'
 
-interface FooterProps {
-  onCopyEmail: () => void
-  copied: boolean
-}
+export function Footer() {
+  const emailRef = useRef<HTMLAnchorElement>(null)
+  const [magneticOffset, setMagneticOffset] = useState({ x: 0, y: 0 })
 
-export const Footer: React.FC<FooterProps> = ({ onCopyEmail, copied }) => {
-  const scrollToTop = () => {
-    soundFX.click(800)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!emailRef.current) return
+    const rect = emailRef.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    const distanceX = (e.clientX - centerX) * 0.18
+    const distanceY = (e.clientY - centerY) * 0.18
+    setMagneticOffset({ x: distanceX, y: distanceY })
+  }
+
+  const handleMouseLeave = () => {
+    setMagneticOffset({ x: 0, y: 0 })
   }
 
   return (
-    <footer id="contact" className="border-t border-white/10 py-16 bg-zinc-950 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-12">
-          {/* Identity & Closing */}
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/15 flex items-center justify-center font-display font-bold text-xs text-white">
-                MS
-              </div>
-              <h4 className="font-display font-bold text-lg text-white">
-                {PORTFOLIO_DATA.profile.name}
-              </h4>
-            </div>
-            <p className="text-zinc-400 text-xs sm:text-sm max-w-md font-normal">
-              Computer Science Undergraduate at <strong className="text-zinc-200">VIT-AP</strong> (CSE Core). Focused on competitive programming, low-latency architectures, and deterministic software engineering.
-            </p>
-          </div>
+    <footer id="contact" className="pt-24 sm:pt-36 pb-12 px-6 sm:px-10 lg:px-16 max-w-[1440px] mx-auto w-full">
+      {/* Section Rail Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-16 border-b border-[#1C1915]/10 pb-6">
+        <div className="flex items-center gap-3 font-mono text-xs text-[#8A4B2A] uppercase tracking-widest">
+          <span>05</span>
+          <span>/</span>
+          <span>Contact</span>
+        </div>
+        <p className="font-mono text-xs text-[#6F675B] mt-2 sm:mt-0">
+          DISCUSSIONS & COLLABORATIONS
+        </p>
+      </div>
 
-          {/* Social Links & Back to Top */}
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => {
-                soundFX.success()
-                onCopyEmail()
-              }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-xs font-mono text-zinc-300 hover:text-white border border-white/10 transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>{copied ? 'Email Copied!' : PORTFOLIO_DATA.profile.email}</span>
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-zinc-500" />}
-            </button>
+      {/* Main Closing Section */}
+      <div className="py-8 sm:py-16">
+        <h2 className="font-serif text-[clamp(3.5rem,10vw,10.5rem)] font-normal text-[#1C1915] leading-[0.9] tracking-tight mb-10 select-none">
+          <span className="not-italic">Let’s </span>
+          <span className="italic text-[#8A4B2A]">talk.</span>
+        </h2>
 
-            <a
-              href={PORTFOLIO_DATA.profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => soundFX.click(750)}
-              className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/10 transition-colors"
-              title="GitHub Profile"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-
-            <a
-              href={PORTFOLIO_DATA.profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => soundFX.click(750)}
-              className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/10 transition-colors"
-              title="LinkedIn Profile"
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
-
-            <button
-              onClick={scrollToTop}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-xs font-mono text-zinc-400 hover:text-white border border-white/10 transition-colors"
-            >
-              <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
-          </div>
+        {/* Large Underlined Email Link with Magnetic Hover Effect */}
+        <div className="overflow-hidden mb-16 inline-block">
+          <motion.a
+            ref={emailRef}
+            href={`mailto:${PORTFOLIO_CONFIG.contact.email}`}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            animate={{ x: magneticOffset.x, y: magneticOffset.y }}
+            transition={{ type: 'spring', stiffness: 240, damping: 20 }}
+            className="editorial-link font-serif text-2xl sm:text-4xl lg:text-5xl font-normal text-[#1C1915] hover:text-[#8A4B2A]"
+          >
+            {PORTFOLIO_CONFIG.contact.email}
+          </motion.a>
         </div>
 
-        {/* Bottom Credits & Design Principles */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono gap-4">
-          <p>
-            © {new Date().getFullYear()} Y. Mohit Sai. Crafted with zero boilerplate, strict TypeScript, and Vite.
-          </p>
-          <div className="flex items-center gap-4 text-[11px]">
-            <span>Deterministic</span>
-            <span>•</span>
-            <span>Zero Slop</span>
-            <span>•</span>
-            <span>VIT-AP CSE Core</span>
-          </div>
+        {/* GitHub & LinkedIn plain text links */}
+        <div className="flex items-center gap-8 sm:gap-12 font-mono text-xs sm:text-sm text-[#6F675B] mb-24">
+          <a
+            href={PORTFOLIO_CONFIG.contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="editorial-link hover:text-[#8A4B2A]"
+          >
+            GitHub ({PORTFOLIO_CONFIG.contact.githubUsername}) ↗
+          </a>
+          <a
+            href={PORTFOLIO_CONFIG.contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="editorial-link hover:text-[#8A4B2A]"
+          >
+            LinkedIn ↗
+          </a>
+        </div>
+
+        {/* Tiny Footer */}
+        <div className="border-t border-[#1C1915]/14 pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs font-mono text-[#6F675B]">
+          <p>© {PORTFOLIO_CONFIG.profile.currentYear} {PORTFOLIO_CONFIG.profile.fullName}.</p>
+          <p>B.Tech CSE Core · VIT-AP University</p>
         </div>
       </div>
     </footer>

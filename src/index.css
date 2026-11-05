@@ -2,9 +2,17 @@
 
 @layer base {
   :root {
-    --font-display: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --bg-paper: #EFE8DC;
+    --bg-secondary: #E6DDCD;
+    --ink: #1C1915;
+    --ink-muted: #6F675B;
+    --hairline: rgba(28, 25, 21, 0.14);
+    --hairline-strong: rgba(28, 25, 21, 0.28);
+    --accent: #8A4B2A;
+    
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
   * {
@@ -12,81 +20,134 @@
   }
 
   html {
-    scroll-behavior: smooth;
-    color-scheme: dark;
-    background-color: #08080a;
+    background-color: var(--bg-paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #08080a;
-    color: #e4e4e7;
-    font-family: var(--font-body);
+    background-color: var(--bg-paper);
+    color: var(--ink);
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
+  }
+
+  /* Accessible focus styling */
+  a:focus-visible, button:focus-visible {
+    outline: 1.5px solid var(--accent);
+    outline-offset: 3px;
   }
 }
 
-.font-display {
-  font-family: var(--font-display);
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-.font-body {
-  font-family: var(--font-body);
+.font-sans {
+  font-family: var(--font-sans);
 }
 
 .font-mono {
   font-family: var(--font-mono);
 }
 
-/* Subtle background grid pattern */
-.bg-grid-pattern {
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+/* Hairline borders */
+.border-hairline {
+  border-color: rgba(28, 25, 21, 0.14);
 }
 
-/* Radial spotlight mask */
-.radial-mask {
-  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+.border-t-hairline {
+  border-top: 1px solid rgba(28, 25, 21, 0.14);
 }
 
-/* Subtle glass effect */
-.glass-panel {
-  background: rgba(18, 18, 22, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+.border-b-hairline {
+  border-bottom: 1px solid rgba(28, 25, 21, 0.14);
 }
 
-.glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.glass-panel-hover:hover {
-  background: rgba(26, 26, 32, 0.8);
-  border-color: rgba(255, 255, 255, 0.16);
-  transform: translateY(-2px);
-  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+.border-l-hairline {
+  border-left: 1px solid rgba(28, 25, 21, 0.14);
 }
 
-/* Text glow */
-.text-glow {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+.border-r-hairline {
+  border-right: 1px solid rgba(28, 25, 21, 0.14);
 }
 
-/* Custom scrollbars */
+/* Animated editorial underlines */
+.editorial-link {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--ink);
+  transform-origin: right;
+  transform: scaleX(1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.editorial-link:hover {
+  color: var(--accent);
+}
+
+.editorial-link:hover::after {
+  background-color: var(--accent);
+  transform-origin: left;
+}
+
+/* Custom scrollbars that feel like paper */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #08080a;
+  background: #EFE8DC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 9999px;
+  background: rgba(28, 25, 21, 0.18);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: rgba(28, 25, 21, 0.35);
+}
+
+/* Horizontal typographic marquee keyframes */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marqueeReverse 42s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
 }

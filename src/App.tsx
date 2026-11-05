@@ -1,72 +1,68 @@
-import { useState } from 'react'
-import confetti from 'canvas-confetti'
-import { PORTFOLIO_DATA } from './data/portfolioData'
+import { useEffect, useState } from 'react'
+import Lenis from 'lenis'
+import { Preloader } from './components/Preloader'
+import { Cursor } from './components/Cursor'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
-import { ProjectsShowcase } from './components/ProjectsShowcase'
-import { EducationSection } from './components/EducationSection'
-import { DualPassionsSection } from './components/DualPassionsSection'
-import { SkillsMatrix } from './components/SkillsMatrix'
+import { SelectedWork } from './components/SelectedWork'
+import { AboutEducation } from './components/AboutEducation'
+import { Interests } from './components/Interests'
+import { SkillsTypography } from './components/SkillsTypography'
 import { Footer } from './components/Footer'
-import { Check } from 'lucide-react'
 
 export function App() {
-  const [copied, setCopied] = useState(false)
+  const [cursorText, setCursorText] = useState<string | null>(null)
+  const [preloaderFinished, setPreloaderFinished] = useState(false)
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(PORTFOLIO_DATA.profile.email)
-    setCopied(true)
-
-    // Trigger subtle celebratory confetti
-    try {
-      confetti({
-        particleCount: 28,
-        spread: 60,
-        origin: { y: 0.15 },
-        colors: ['#3b82f6', '#10b981', '#f59e0b', '#ffffff'],
-        disableForReducedMotion: true,
-      })
-    } catch {
-      // Confetti fallback
+  // Initialize Lenis smooth inertial scrolling
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
     }
 
-    setTimeout(() => {
-      setCopied(false)
-    }, 2800)
-  }
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    })
+
+    let animationFrameId: number
+
+    function raf(time: number) {
+      lenis.raf(time)
+      animationFrameId = requestAnimationFrame(raf)
+    }
+
+    animationFrameId = requestAnimationFrame(raf)
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      lenis.destroy()
+    }
+  }, [])
 
   return (
-    <div className="min-h-screen bg-[#08080a] text-zinc-100 flex flex-col relative selection:bg-white/20 selection:text-white">
-      {/* Background Subtle Grid Texture */}
-      <div className="fixed inset-0 bg-grid-pattern pointer-events-none opacity-40 -z-20" />
+    <div className="min-h-screen bg-[#EFE8DC] text-[#1C1915] relative selection:bg-[#8A4B2A] selection:text-[#EFE8DC]">
+      {/* Editorial Preloader */}
+      <Preloader onComplete={() => setPreloaderFinished(true)} />
 
-      {/* Global Toast Notification */}
-      {copied && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-zinc-900/95 border border-emerald-500/30 text-white shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-bottom-3 font-mono text-xs">
-          <div className="p-1 rounded-full bg-emerald-500/20 text-emerald-400">
-            <Check className="w-3.5 h-3.5" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-emerald-300">Email Copied to Clipboard</span>
-            <span className="text-zinc-400 text-[11px]">{PORTFOLIO_DATA.profile.email}</span>
-          </div>
-        </div>
-      )}
+      {/* Floating Precision Cursor */}
+      <Cursor cursorText={cursorText} />
 
-      {/* Navigation */}
-      <Navbar onCopyEmail={handleCopyEmail} copied={copied} />
+      {/* Fixed Minimal Header */}
+      <Navbar />
 
-      {/* Main Content Area */}
-      <main className="flex-1">
-        <Hero onCopyEmail={handleCopyEmail} copied={copied} />
-        <ProjectsShowcase />
-        <EducationSection />
-        <DualPassionsSection />
-        <SkillsMatrix />
+      {/* Editorial Body Spread */}
+      <main className={`transition-opacity duration-700 ${preloaderFinished ? 'opacity-100' : 'opacity-0'}`}>
+        <Hero />
+        <SelectedWork onCursorChange={setCursorText} />
+        <AboutEducation />
+        <Interests />
+        <SkillsTypography />
       </main>
 
-      {/* Footer */}
-      <Footer onCopyEmail={handleCopyEmail} copied={copied} />
+      {/* Contact & Footer */}
+      <Footer />
     </div>
   )
 }
