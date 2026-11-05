@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { PORTFOLIO_CONFIG } from '../data/config'
+import { ContactSlider } from './ContactSlider'
 
 export function Hero() {
   const [mouseParallax, setMouseParallax] = useState({ x: 0, y: 0 })
@@ -128,6 +129,11 @@ export function Hero() {
           <p className="font-text text-base sm:text-lg lg:text-xl text-[#1F1A14]/90 font-medium leading-relaxed max-w-2xl">
             {PORTFOLIO_CONFIG.profile.brief}
           </p>
+
+          {/* Premium Black Textured Contact Slider (LinkedIn -> GitHub -> Email) */}
+          <div className="pt-1">
+            <ContactSlider />
+          </div>
 
           {/* Quick Highlight Points (Education + Interests immediately visible) */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 border-t border-[#1F1A14]/15">
