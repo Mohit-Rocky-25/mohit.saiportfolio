@@ -406,7 +406,7 @@ export function SelectedWork() {
                       line: 204,
                       commit: '7f3a9b2',
                       latency: '1.1ms',
-                      purpose: 'Validates proposed code diffs in memory against 308 automated regression tests before commit merge.',
+                      purpose: 'Validates code modifications locally with automated test suites before commit merge.',
                     },
                     {
                       id: 'graph',
@@ -415,7 +415,7 @@ export function SelectedWork() {
                       line: 56,
                       commit: '7f3a9b2',
                       latency: '2.8ms',
-                      purpose: 'Constructs circular dependency matrices and topological module orders with guaranteed zero hallucination.',
+                      purpose: 'Constructs dependency graphs and module orderings directly from AST syntax trees.',
                     },
                   ].map((node) => {
                     const isSelected = selectedNode?.id === node.id
@@ -655,7 +655,7 @@ export function SelectedWork() {
                       </span>
                       <p className="font-bold text-[#0A0A0A]">
                         {selectedCandidate === 'mohit'
-                          ? 'C++20, Low-Latency Algorithms, In-Memory AST, TypeScript Strict, Truth Gate Invariants, Docker'
+                          ? 'C++, TypeScript, React, System Design, Algorithms, Docker, Automated Testing'
                           : 'React Basics, HTML/CSS, Git, REST Calls'}
                       </p>
                     </div>
@@ -666,7 +666,7 @@ export function SelectedWork() {
                       </span>
                       <p className="font-bold text-[#0A0A0A]">
                         {selectedCandidate === 'mohit'
-                          ? '✓ Zero Cloud Leakage • ✓ Invariant Proofs Validated • Verdict: Strong Hire'
+                          ? '✓ Strong Core CS & Systems • ✓ Clean Code & Automated Tests • Recommendation: High Match'
                           : '⚠️ Missing Systems Programming, Zero Formal Test Automation'}
                       </p>
                     </div>

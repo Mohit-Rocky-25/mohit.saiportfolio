@@ -18,6 +18,17 @@ export interface ProjectScene {
   liveUrl?: string
 }
 
+export interface SkillItem {
+  name: string
+  context: string
+}
+
+export interface SkillCategory {
+  category: string
+  description: string
+  items: SkillItem[]
+}
+
 export const PORTFOLIO_CONFIG = {
   // Placeholders to be filled by user
   contact: {
@@ -58,10 +69,10 @@ export const PORTFOLIO_CONFIG = {
     competitiveProgramming: {
       title: 'Competitive Programming',
       statement: 'The discipline of deterministic problem solving under strict wall-clock bounds.',
-      prose: 'Writing code under clock pressure demands mathematical rigor: proving tight asymptotic bounds between O(1) and O(N log N), exploiting spatial cache locality, and structuring invariants that never fail against adversarial edge cases.',
+      prose: 'Writing fast, correct solutions in C++ under memory and time constraints. Rigorous practice in graph theory, dynamic programming, combinatorics, and discrete structures.',
     },
     highFrequencyTrading: {
-      title: 'High-Frequency Trading',
+      title: 'Low-Latency Architecture & HFT',
       statement: 'Fascinated by market microstructure and microsecond deterministic execution.',
       prose: 'Drawn to sub-microsecond low-latency engineering: reconstructing Level 2/3 order books, architecting lock-free ring buffers, removing dynamic memory allocations from the hot path, and minimizing tail latency jitter.',
     },
@@ -73,25 +84,23 @@ export const PORTFOLIO_CONFIG = {
       number: '01',
       title: 'RepoPilot',
       tagline: 'Local-First Codebase Intelligence & AST Symbol Mapping',
-      brief: 'Engineers lose 70% of onboarding time understanding unfamiliar codebases. RepoPilot generates deterministic in-memory AST symbol trees and ranked semantic code search running 100% locally on device—slashing architecture discovery from days to seconds with zero cloud token costs and zero hallucinated citations.',
+      brief: 'Engineers lose significant onboarding time understanding unfamiliar codebases. RepoPilot generates deterministic in-memory AST symbol trees and ranked code search running 100% locally on device—slashing architecture discovery from days to seconds with zero cloud token costs and zero hallucinated citations.',
       sceneBackground: '#9E77F7', // Bold Violet
       accentColor: '#0A0A0A',
       isPrimary: true,
       builtWith: [
-        'Next.js 14',
-        'TypeScript Strict',
+        'Next.js',
+        'TypeScript',
         'Python',
         'Go',
-        'AST Parsers',
-        'Vitest (308 Tests)',
-        'Docker',
         'Tailwind CSS',
-        'Ollama Local LLM',
+        'Docker',
+        'Vitest',
       ],
       keyDecisions: [
-        'Sub-second AST indexing: parses 50,000+ LOC in <1.2s locally with zero cloud API keys or data leakage.',
-        'Immutable Git citation locks: every architectural claim links mathematically to a verified Git commit SHA, file path, and line number.',
-        'Production test rig: 308 automated regression tests run in-memory against defensive sandbox AST diffs.',
+        'Sub-second AST indexing: parses codebases locally with zero external API dependencies or data leakage.',
+        'Deterministic citation tracking: every architectural component links directly to verified source files, line numbers, and commits.',
+        'Automated regression testing: comprehensive unit test suite verifies symbol extraction and file traversal workflows.',
       ],
       githubUrl: 'https://github.com/Mohit-Rocky-25/RepoPilot',
       liveUrl: 'https://repo-pilot-eta.vercel.app',
@@ -101,26 +110,23 @@ export const PORTFOLIO_CONFIG = {
       number: '02',
       title: 'HireFlow',
       tagline: '100% Client-Side ATS Resume Parser & Algorithmic Job Optimizer',
-      brief: 'Over 75% of qualified engineering resumes get auto-rejected by broken enterprise ATS scanners. HireFlow parses complex PDF/DOCX binary streams entirely in client browser memory with $0 server cost, providing real-time ATS match scoring, keyword gap diagnostics, and greedy set-cover project recommendations.',
+      brief: 'Many qualified engineering resumes get filtered by automated ATS scanners. HireFlow parses complex document streams entirely in browser memory with zero server cost, providing real-time ATS scoring, keyword gap diagnostics, and algorithmic project recommendations.',
       sceneBackground: '#FA6924', // Bold Dark Orange
       accentColor: '#0A0A0A',
       isPrimary: true,
       builtWith: [
-        'React 19',
-        'TypeScript Strict',
+        'React',
+        'TypeScript',
         'Vite',
         'Tailwind CSS',
         'Zustand',
-        'Zod Schemas',
-        'pdfjs-dist',
-        'pdf-lib',
-        'mammoth',
-        'Vitest (766 Tests)',
+        'Zod',
+        'Vitest',
       ],
       keyDecisions: [
-        'Zero backend footprint: 100% client-side WebAssembly text extraction via pdfjs-dist & mammoth, eliminating server operating costs.',
-        'Truth Gate invariants: mathematical checks prevent the resume builder from hallucinating unearned candidate qualifications.',
-        'Algorithmic job match: greedy set-cover algorithm computes minimal project builds needed to satisfy multiple job descriptions.',
+        'Client-side stream extraction: 100% in-browser document parsing using WebAssembly without server uploads.',
+        'Strict schema validation: robust Zod schemas guarantee clean data extraction and prevent malformed candidate profiles.',
+        'Algorithmic match engine: greedy set-cover algorithm computes minimal project builds needed to satisfy job descriptions.',
       ],
       githubUrl: 'https://github.com/Mohit-Rocky-25/hireflow',
       liveUrl: undefined,
@@ -137,16 +143,15 @@ export const PORTFOLIO_CONFIG = {
       builtWith: [
         'React',
         'Next.js',
-        'JavaScript',
         'TypeScript',
+        'JavaScript',
         'Tailwind CSS',
         'Web Audio API',
-        'REST Adapters',
       ],
       keyDecisions: [
         'In-browser audio synthesis: zero-dependency acoustic tone generation built directly on the native Web Audio API.',
         'Latency-adaptive review curve: modified SuperMemo-2 algorithm dynamically calculates review intervals from user response times.',
-        'Contextual nuance engine: dynamic scenario adapters prioritize natural colloquial speech patterns over literal dictionary translations.',
+        'Contextual scenario engine: dynamic immersion adapters prioritize natural colloquial speech patterns over literal dictionary translations.',
       ],
       githubUrl: 'https://github.com/Mohit-Rocky-25/UNILANG',
       liveUrl: 'https://unilang-three.vercel.app',
@@ -155,46 +160,79 @@ export const PORTFOLIO_CONFIG = {
 
   skills: {
     marqueeLine1: [
-      { text: 'TypeScript', italic: false, project: 'repopilot' },
-      { text: 'Python', italic: true, project: 'repopilot' },
       { text: 'C++', italic: false, project: 'all' },
-      { text: 'Go', italic: true, project: 'repopilot' },
-      { text: 'Java', italic: false, project: 'all' },
-      { text: 'Next.js 14', italic: true, project: 'repopilot' },
-      { text: 'React 19', italic: false, project: 'hireflow' },
-      { text: 'Vite', italic: true, project: 'hireflow' },
+      { text: 'Python', italic: true, project: 'repopilot' },
+      { text: 'TypeScript', italic: false, project: 'repopilot' },
+      { text: 'React', italic: true, project: 'hireflow' },
+      { text: 'Next.js', italic: false, project: 'repopilot' },
+      { text: 'Node.js', italic: true, project: 'all' },
+      { text: 'Go', italic: false, project: 'repopilot' },
+      { text: 'Java', italic: true, project: 'all' },
       { text: 'Tailwind CSS', italic: false, project: 'repopilot' },
-      { text: 'AST Parsers', italic: true, project: 'repopilot' },
+      { text: 'Data Structures', italic: true, project: 'all' },
     ],
     marqueeLine2: [
-      { text: 'Vitest (1,074+ Tests)', italic: false, project: 'hireflow' },
-      { text: 'Docker', italic: true, project: 'repopilot' },
-      { text: 'Zustand', italic: false, project: 'hireflow' },
-      { text: 'Zod Schemas', italic: true, project: 'hireflow' },
-      { text: 'Framer Motion', italic: false, project: 'hireflow' },
-      { text: 'Web Audio API', italic: true, project: 'unilang' },
-      { text: 'In-Memory PDF Parsing', italic: false, project: 'hireflow' },
-      { text: 'Git CLI', italic: true, project: 'repopilot' },
+      { text: 'Docker', italic: false, project: 'repopilot' },
+      { text: 'Git & GitHub', italic: true, project: 'repopilot' },
       { text: 'Linux', italic: false, project: 'repopilot' },
+      { text: 'SQL', italic: true, project: 'all' },
+      { text: 'Vite', italic: false, project: 'hireflow' },
+      { text: 'Web Audio API', italic: true, project: 'unilang' },
+      { text: 'Zustand', italic: false, project: 'hireflow' },
+      { text: 'Zod Validation', italic: true, project: 'hireflow' },
+      { text: 'Automated Testing', italic: false, project: 'hireflow' },
       { text: 'Vercel', italic: true, project: 'repopilot' },
     ],
-    index: [
+    categories: [
       {
         category: 'Languages',
-        terms: ['TypeScript (Strict)', 'Python', 'C++', 'Go', 'Java', 'JavaScript (ESNext)', 'SQL', 'HTML5 / CSS3'],
+        description: 'Core programming languages for algorithms, systems, and application logic.',
+        items: [
+          { name: 'C++', context: 'Competitive programming & algorithms' },
+          { name: 'Python', context: 'Scripting, automation & data processing' },
+          { name: 'TypeScript', context: 'Strongly-typed web platforms & tooling' },
+          { name: 'JavaScript', context: 'Modern web standards & asynchronous APIs' },
+          { name: 'Go', context: 'Concurrent backend utilities & systems' },
+          { name: 'Java', context: 'Object-oriented architecture & algorithms' },
+          { name: 'SQL', context: 'Relational database schema & querying' },
+        ],
       },
       {
-        category: 'Frontend & UI',
-        terms: ['React 19', 'Next.js 14', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'Web Audio API'],
+        category: 'Frontend & Full Stack',
+        description: 'Modern architectures for fast, reactive, and reliable user interfaces.',
+        items: [
+          { name: 'React', context: 'Modular components & reactive UI' },
+          { name: 'Next.js', context: 'Full-stack SSR/SSG web platforms' },
+          { name: 'Node.js', context: 'Backend runtimes & RESTful API endpoints' },
+          { name: 'Tailwind CSS', context: 'Clean, responsive design systems' },
+          { name: 'Vite', context: 'Fast bundling & modern build pipelines' },
+          { name: 'Zustand', context: 'Lightweight client state management' },
+          { name: 'Web Audio API', context: 'Real-time in-browser audio synthesis' },
+        ],
       },
       {
-        category: 'Systems & Architecture',
-        terms: ['Data Structures & Algorithms', 'AST Symbol Extraction', 'In-Memory Stream Parsing', 'Deterministic Sandboxing', 'Order Book Mechanics', 'Truth Gate Invariants'],
+        category: 'Systems & Core CS',
+        description: 'Foundational computer science principles and algorithmic problem solving.',
+        items: [
+          { name: 'Data Structures & Algorithms', context: 'Algorithmic optimization & complexity analysis' },
+          { name: 'Competitive Programming', context: 'Strict time-bounded problem solving' },
+          { name: 'Low-Latency Systems', context: 'Cache-conscious memory & execution efficiency' },
+          { name: 'AST & Code Analysis', context: 'Syntax parsing & static symbol extraction' },
+          { name: 'Client-Side Parsing', context: 'Zero-backend document stream processing' },
+        ],
       },
       {
-        category: 'Tooling & Testing',
-        terms: ['Vitest (Automated Test Suites)', 'Docker', 'Git & GitHub CLI', 'Zod Runtime Schemas', 'Linux Shell', 'Vercel Deployment'],
+        category: 'Developer Tools & DevOps',
+        description: 'Reliable tooling, containerization, and testing suites for production code.',
+        items: [
+          { name: 'Git & GitHub', context: 'Version control & collaborative PR workflows' },
+          { name: 'Docker', context: 'Containerization & reproducible environments' },
+          { name: 'Linux / Bash', context: 'Unix command-line & shell scripting' },
+          { name: 'Vitest', context: 'Automated unit & integration test suites' },
+          { name: 'Zod', context: 'Runtime data validation & schema safety' },
+          { name: 'Vercel', context: 'Cloud deployments & CI/CD workflows' },
+        ],
       },
-    ],
+    ] as SkillCategory[],
   },
 }
