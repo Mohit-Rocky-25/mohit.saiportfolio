@@ -74,8 +74,8 @@ export const PORTFOLIO_CONFIG = {
       title: 'RepoPilot',
       tagline: 'Local-First Codebase Intelligence & AST Symbol Mapping',
       brief: 'Engineers lose 70% of onboarding time understanding unfamiliar codebases. RepoPilot generates deterministic in-memory AST symbol trees and ranked semantic code search running 100% locally on device—slashing architecture discovery from days to seconds with zero cloud token costs and zero hallucinated citations.',
-      sceneBackground: '#9E77F7', // Bold Violet
-      accentColor: '#0A0A0A',
+      sceneBackground: '#120726', // Full Dark Violet
+      accentColor: '#C084FC', // Electric Lilac
       isPrimary: true,
       builtWith: [
         'Next.js 14',
@@ -102,8 +102,8 @@ export const PORTFOLIO_CONFIG = {
       title: 'HireFlow',
       tagline: '100% Client-Side ATS Resume Parser & Algorithmic Job Optimizer',
       brief: 'Over 75% of qualified engineering resumes get auto-rejected by broken enterprise ATS scanners. HireFlow parses complex PDF/DOCX binary streams entirely in client browser memory with $0 server cost, providing real-time ATS match scoring, keyword gap diagnostics, and greedy set-cover project recommendations.',
-      sceneBackground: '#FA6924', // Bold Dark Orange
-      accentColor: '#0A0A0A',
+      sceneBackground: '#1F0A03', // Full Dark Orange / Ember
+      accentColor: '#FF6B35', // Fiery Orange
       isPrimary: true,
       builtWith: [
         'React 19',
@@ -131,8 +131,8 @@ export const PORTFOLIO_CONFIG = {
       title: 'UniLang',
       tagline: 'Real-Time Acoustic Audio Synthesis & Adaptive Spaced Repetition',
       brief: 'Traditional language apps rely on passive flashcards that fail real-world conversational speed. UniLang couples interactive spoken immersion scenarios with real-time browser frequency synthesis via the Web Audio API and an adaptive spaced-repetition engine calibrated to microsecond vocal recall latency.',
-      sceneBackground: '#FFCD29', // Bold Yellow
-      accentColor: '#0A0A0A',
+      sceneBackground: '#1A1302', // Full Dark Yellow / Gold
+      accentColor: '#FACC15', // Radiant Cyber Gold
       isPrimary: false,
       builtWith: [
         'React',

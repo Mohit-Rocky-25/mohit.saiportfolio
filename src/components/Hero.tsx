@@ -85,8 +85,8 @@ export function Hero() {
             <span>{PORTFOLIO_CONFIG.profile.heroLabel}</span>
           </div>
 
-          {/* Name: Modest and confident, clamp max 4.5rem, bold and big */}
-          <h1 className="font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-extrabold tracking-tight text-[#1F1A14] leading-[1.05] flex flex-wrap">
+          {/* Name: Modest and confident, bold & round Outfit font */}
+          <h1 className="font-display text-[clamp(2.75rem,6vw,5rem)] font-black tracking-tight text-[#1F1A14] leading-[1.02] flex flex-wrap">
             {nameLetters.map((char, index) => (
               <motion.span
                 key={index}
@@ -97,7 +97,7 @@ export function Hero() {
                   delay: 0.15 + index * 0.035,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`inline-block bricolage-shift ${char === ' ' ? 'w-[0.3em]' : ''}`}
+                className={`inline-block ${char === ' ' ? 'w-[0.3em]' : ''}`}
               >
                 {char}
               </motion.span>

@@ -12,15 +12,18 @@
     --terracotta: #B4441F;
     --olive: #5E6B3A;
     
-    --scene-repopilot: #D3DBDF;
-    --scene-hireflow: #D5DBC4;
-    --scene-unilang: #E6CDBF;
+    --scene-repopilot: #120726;
+    --scene-hireflow: #1F0A03;
+    --scene-unilang: #1A1302;
 
     --hairline: rgba(31, 26, 20, 0.14);
     --hairline-strong: rgba(31, 26, 20, 0.28);
 
-    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --font-text: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --nav-ink: #1F1A14;
+    --nav-border: rgba(31, 26, 20, 0.14);
+
+    --font-display: 'Outfit', 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-text: 'Plus Jakarta Sans', 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'Geist Mono', ui-monospace, monospace;
   }
 

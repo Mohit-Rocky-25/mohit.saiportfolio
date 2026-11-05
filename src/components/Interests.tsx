@@ -33,11 +33,11 @@ export function Interests() {
             <span className="font-mono text-[#B4441F]">O(1) → O(N log N)</span>
           </div>
 
-          <h3 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold text-[#1F1A14] leading-[1.08] tracking-tight group-hover:text-[#B4441F] transition-colors">
+          <h3 className="font-display text-[clamp(2rem,3.8vw,3.25rem)] font-black text-[#1F1A14] leading-[1.05] tracking-tight group-hover:text-[#B4441F] transition-colors">
             {competitiveProgramming.statement}
           </h3>
 
-          <p className="font-text text-base text-[#1F1A14]/80 font-normal leading-relaxed">
+          <p className="font-text text-base sm:text-lg text-[#1F1A14]/85 font-medium leading-relaxed">
             {competitiveProgramming.prose}
           </p>
 
@@ -75,11 +75,11 @@ export function Interests() {
             <span className="font-mono text-[#B4441F]">&lt; 380ns execution</span>
           </div>
 
-          <h3 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold text-[#1F1A14] leading-[1.08] tracking-tight group-hover:text-[#B4441F] transition-colors">
+          <h3 className="font-display text-[clamp(2rem,3.8vw,3.25rem)] font-black text-[#1F1A14] leading-[1.05] tracking-tight group-hover:text-[#B4441F] transition-colors">
             {highFrequencyTrading.statement}
           </h3>
 
-          <p className="font-text text-base text-[#1F1A14]/80 font-normal leading-relaxed">
+          <p className="font-text text-base sm:text-lg text-[#1F1A14]/85 font-medium leading-relaxed">
             {highFrequencyTrading.prose}
           </p>
 

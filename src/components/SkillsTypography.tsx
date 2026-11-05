@@ -82,7 +82,7 @@ export function SkillsTypography() {
                   }`}
                 >
                   <span
-                    className={`${item.italic ? 'italic font-light' : 'not-italic font-bold'} ${
+                    className={`${item.italic ? 'italic font-medium' : 'not-italic font-black'} ${
                       isTerracotta ? 'text-[#B4441F]' : 'text-[#5E6B3A]'
                     }`}
                   >
@@ -109,7 +109,7 @@ export function SkillsTypography() {
                   }`}
                 >
                   <span
-                    className={`${item.italic ? 'italic font-light' : 'not-italic font-bold'} ${
+                    className={`${item.italic ? 'italic font-medium' : 'not-italic font-black'} ${
                       isOlive ? 'text-[#5E6B3A]' : 'text-[#B4441F]'
                     }`}
                   >

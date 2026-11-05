@@ -19,10 +19,10 @@ export function AboutEducation() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
         {/* Left: Short Statement */}
         <div className="lg:col-span-5 space-y-4">
-          <h3 className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold text-[#1F1A14] leading-[1.08] tracking-tight">
+          <h3 className="font-display text-[clamp(2rem,3.8vw,3.25rem)] font-black text-[#1F1A14] leading-[1.05] tracking-tight">
             Grounded in runtime determinism and invariant proofs.
           </h3>
-          <p className="font-text text-base text-[#1F1A14]/80 font-normal leading-relaxed">
+          <p className="font-text text-base sm:text-lg text-[#1F1A14]/85 font-medium leading-relaxed">
             I study computer science by analyzing how systems behave at their boundaries: examining compiler ASTs, profiling memory layout, and building client-side tools that prioritize verified citations.
           </p>
         </div>
@@ -35,19 +35,19 @@ export function AboutEducation() {
               <div className="absolute -left-[37px] top-1.5 w-3 h-3 rounded-full bg-[#EAE2D1] border-2 border-[#B4441F]" />
 
               <div className="flex justify-between items-baseline">
-                <span className="font-mono text-xs text-[#B4441F] font-semibold">{item.period}</span>
-                <span className="font-text text-xs text-[#5E6B3A] font-medium">{item.discipline}</span>
+                <span className="font-mono text-xs text-[#B4441F] font-bold">{item.period}</span>
+                <span className="font-text text-xs text-[#5E6B3A] font-bold">{item.discipline}</span>
               </div>
 
-              <h4 className="font-display text-xl sm:text-2xl font-bold text-[#1F1A14]">
+              <h4 className="font-display text-2xl sm:text-3xl font-black text-[#1F1A14]">
                 {item.institution}
               </h4>
 
-              <p className="font-text text-sm font-medium text-[#1F1A14]/90">
+              <p className="font-text text-base font-bold text-[#1F1A14]/90">
                 {item.degree}
               </p>
 
-              <p className="font-text text-sm text-[#6B6254] font-normal leading-relaxed">
+              <p className="font-text text-sm sm:text-base text-[#6B6254] font-medium leading-relaxed">
                 {item.note}
               </p>
             </div>
