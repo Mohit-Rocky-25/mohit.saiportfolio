@@ -13,7 +13,7 @@
 ## 👨‍💻 About Y. Mohit Sai
 
 - **Identity**: Y. Mohit Sai
-- **Current Education**: B.Tech in **Computer Science and Engineering (CSE Core)** at **VIT-AP University**, Amaravati (2023 — Present).
+- **Current Education**: B.Tech in **Computer Science and Engineering (CSE Core)** at **VIT-AP University**, Amaravati (2025 — Present).
 - **Previous Education**: 12th Grade / Intermediate (MPC) completed at **Narayana Junior College, Kurnool**.
 - **Email**: [`yadavmohit12243@gmail.com`](mailto:yadavmohit12243@gmail.com)
 - **LinkedIn**: [linkedin.com/in/mohit-sai-57255b373](https://www.linkedin.com/in/mohit-sai-57255b373/)

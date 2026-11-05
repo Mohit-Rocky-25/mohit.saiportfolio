@@ -50,7 +50,7 @@ export const PORTFOLIO_CONFIG = {
 
   education: [
     {
-      period: '2023 — Present',
+      period: '2025 — Present',
       institution: 'VIT-AP University',
       degree: 'B.Tech in Computer Science and Engineering',
       discipline: 'CSE Core',

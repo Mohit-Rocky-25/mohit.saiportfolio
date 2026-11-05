@@ -120,7 +120,7 @@ export function Hero() {
               </span>
               <span className="hidden sm:inline-block text-[#1F1A14]/30 font-bold">•</span>
               <span className="font-mono text-xs sm:text-sm font-bold text-[#5E6B3A] bg-[#5E6B3A]/10 px-2.5 py-0.5 rounded-md border border-[#5E6B3A]/20">
-                2023 — Present
+                2025 — Present
               </span>
             </div>
           </div>
