@@ -75,12 +75,6 @@ export function Hero() {
                   className="w-full h-full object-cover object-[50%_20%]"
                 />
               </picture>
-
-              {/* Understandable Tag Badge */}
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-[#EAE2D1]/95 backdrop-blur-sm border border-[#1F1A14]/20 p-2 rounded-xl flex items-center justify-between text-xs font-text">
-                <span className="font-display font-black text-[#1F1A14]">Y. Mohit Sai</span>
-                <span className="font-mono text-[11px] text-[#B4441F] font-bold">CSE Core • VIT-AP</span>
-              </div>
             </div>
           </div>
         </div>
@@ -239,27 +233,6 @@ export function Hero() {
                     className="absolute inset-0 w-full h-full object-cover object-[50%_18%] transition-transform duration-150 ease-out"
                   />
                 </picture>
-
-                {/* Top Badge: Kurnool -> Amaravati */}
-                <div className="absolute top-3.5 right-3.5 bg-[#1F1A14]/85 backdrop-blur-md text-[#EAE2D1] px-3 py-1 rounded-full text-xs font-mono font-bold flex items-center gap-1.5 shadow-md">
-                  <span className="w-2 h-2 rounded-full bg-[#9DB59A] animate-pulse" />
-                  <span>VIT-AP University</span>
-                </div>
-
-                {/* Presentable Anchored Info Banner */}
-                <div className="absolute bottom-3 left-3 right-3 bg-[#EAE2D1]/95 backdrop-blur-md border border-[#1F1A14]/20 p-3 rounded-2xl shadow-lg flex items-center justify-between">
-                  <div>
-                    <div className="font-display font-black text-sm text-[#1F1A14] leading-tight">
-                      Y. Mohit Sai
-                    </div>
-                    <div className="font-mono text-xs text-[#6B6254] font-bold">
-                      CSE Core • Kurnool / Amaravati
-                    </div>
-                  </div>
-                  <div className="w-8 h-8 rounded-xl bg-[#B4441F] text-[#EAE2D1] flex items-center justify-center font-display font-black text-xs shadow-sm">
-                    VIT
-                  </div>
-                </div>
               </motion.div>
             </div>
           </div>
