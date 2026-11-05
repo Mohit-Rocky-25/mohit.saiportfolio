@@ -32,8 +32,8 @@ export interface SkillCategory {
 export const PORTFOLIO_CONFIG = {
   // Placeholders to be filled by user
   contact: {
-    email: '[MY_EMAIL]', // TODO: Fill in your email
-    linkedin: '[MY_LINKEDIN_URL]', // TODO: Fill in your LinkedIn URL
+    email: 'yadavmohit12243@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/mohit-sai-57255b373/',
     github: 'https://github.com/Mohit-Rocky-25',
     githubUsername: 'Mohit-Rocky-25',
   },

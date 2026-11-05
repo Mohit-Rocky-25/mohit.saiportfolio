@@ -12,7 +12,7 @@ export function ContactSlider() {
       id: 'linkedin',
       order: '01',
       name: 'LinkedIn',
-      label: 'Y. Mohit Sai',
+      label: 'in/mohit-sai-57255b373',
       href: PORTFOLIO_CONFIG.contact.linkedin,
       actionText: 'Connect on LinkedIn',
       isEmail: false,
@@ -178,3 +178,4 @@ export function ContactSlider() {
     </div>
   )
 }
+
