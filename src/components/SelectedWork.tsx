@@ -159,7 +159,7 @@ export function SelectedWork() {
                 <span>•</span>
                 <span className="uppercase tracking-widest text-[#B4441F]">Flagship Platform</span>
                 <span className="text-[#1F1A14]/25">|</span>
-                <span className="font-mono text-xs text-[#6B6254]">2024</span>
+                <span className="font-mono text-xs text-[#6B6254]">2026</span>
               </div>
 
               <div className="space-y-2">
@@ -361,7 +361,7 @@ export function SelectedWork() {
                 <span>•</span>
                 <span className="uppercase tracking-widest text-[#B4441F]">Client-Side Architecture</span>
                 <span className="text-[#1F1A14]/25">|</span>
-                <span className="font-mono text-xs text-[#6B6254]">2024</span>
+                <span className="font-mono text-xs text-[#6B6254]">2026</span>
               </div>
 
               <div className="space-y-2">
@@ -536,7 +536,7 @@ export function SelectedWork() {
                 <span>•</span>
                 <span className="uppercase tracking-widest text-[#B4441F]">Audio Systems & Immersion</span>
                 <span className="text-[#1F1A14]/25">|</span>
-                <span className="font-mono text-xs text-[#6B6254]">2024</span>
+                <span className="font-mono text-xs text-[#6B6254]">2026</span>
               </div>
 
               <div className="space-y-2">
