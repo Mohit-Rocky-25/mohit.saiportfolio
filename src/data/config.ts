@@ -3,6 +3,16 @@
  * Y. Mohit Sai — Light Linen & Terracotta Palette
  */
 
+export interface PassionPillar {
+  title: string
+  tag: string
+  badge: string
+  statement: string
+  prose: string
+  highlights: string[]
+  metric: string
+}
+
 export interface ProjectScene {
   id: string
   number: string
@@ -44,7 +54,7 @@ export const PORTFOLIO_CONFIG = {
     last: 'Sai',
     heroLabel: 'Welcome to my portfolio',
     roleTagline: 'CSE Core student at VIT-AP',
-    brief: "I'm an undergraduate computer science student who loves algorithmic problem solving, low-latency systems, and building software that is provably reliable.",
+    brief: "Undergraduate computer science student passionate about building clean, high-performance software. Focused on first-principles problem solving, modern full-stack systems, and crafting responsive user experiences.",
     currentYear: '2026',
   },
 
@@ -66,15 +76,40 @@ export const PORTFOLIO_CONFIG = {
   ],
 
   passions: {
-    competitiveProgramming: {
-      title: 'Competitive Programming',
-      statement: 'The discipline of deterministic problem solving under strict wall-clock bounds.',
-      prose: 'Writing fast, correct solutions in C++ under memory and time constraints. Rigorous practice in graph theory, dynamic programming, combinatorics, and discrete structures.',
+    problemSolving: {
+      title: 'Problem Solving & Mindset',
+      tag: '01 / Problem solving & adaptability',
+      badge: 'First principles',
+      statement: 'First-principles thinking with a relentless bias for action.',
+      prose:
+        'I approach engineering by breaking down root problems before writing code. Rather than relying on fragile workarounds or over-engineering solutions, I prioritize clean logic, solid computer science foundations, and rapid execution. Whether tackling complex algorithmic challenges, designing state architectures, or diving into an unfamiliar tech stack, I learn fast and build systems that work reliably under edge cases.',
+      highlights: [
+        'Root-cause clarity',
+        'Rapid stack adoption',
+        'Edge-case resilience',
+      ],
+      metric: 'Problem breakdown → High execution velocity',
     },
-    highFrequencyTrading: {
-      title: 'Low-Latency Architecture & HFT',
-      statement: 'Fascinated by market microstructure and microsecond deterministic execution.',
-      prose: 'Drawn to sub-microsecond low-latency engineering: reconstructing Level 2/3 order books, architecting lock-free ring buffers, removing dynamic memory allocations from the hot path, and minimizing tail latency jitter.',
+    productCraft: {
+      title: 'Product Craft & Ownership',
+      tag: '02 / Product craft & ownership',
+      badge: 'High ownership',
+      statement: 'Product craftsmanship with complete end-to-end ownership.',
+      prose:
+        'Great engineering doesn’t end with code that compiles—it’s about delivering tools that feel instantaneous, intuitive, and genuinely useful to real people. I take full ownership from initial concept to deployment: obsessing over snappy responsiveness, thoughtful interaction design, and clean, maintainable architecture. I build with a high standard of craft, zero unnecessary bloat, and a genuine care for the end-user experience.',
+      highlights: [
+        'End-to-end delivery',
+        'Sub-second responsiveness',
+        'Clean, maintainable code',
+      ],
+      metric: 'Frictionless UX · Zero-bloat performance',
+    },
+    // Backwards-compatible aliases
+    get competitiveProgramming(): PassionPillar {
+      return this.problemSolving
+    },
+    get highFrequencyTrading(): PassionPillar {
+      return this.productCraft
     },
   },
 

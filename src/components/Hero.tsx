@@ -135,32 +135,32 @@ export function Hero() {
             <ContactSlider />
           </div>
 
-          {/* Quick Highlight Points (Education + Interests immediately visible) */}
+          {/* Quick Highlight Points (Education + Core Strengths immediately visible) */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 border-t border-[#1F1A14]/15">
             <div className="p-2.5 rounded-xl bg-[#1F1A14]/[0.03] border border-[#1F1A14]/10">
               <span className="block font-mono text-[10px] uppercase tracking-wider text-[#6B6254] font-bold">
-                Domain Interest
+                Engineering Focus
               </span>
               <span className="font-display font-black text-xs sm:text-sm text-[#1F1A14]">
-                Low-Latency Systems & HFT
+                Full-Stack & Systems
               </span>
             </div>
 
             <div className="p-2.5 rounded-xl bg-[#1F1A14]/[0.03] border border-[#1F1A14]/10">
               <span className="block font-mono text-[10px] uppercase tracking-wider text-[#6B6254] font-bold">
-                Discipline
+                Core Discipline
               </span>
               <span className="font-display font-black text-xs sm:text-sm text-[#B4441F]">
-                Competitive Programming
+                Algorithmic Problem Solving
               </span>
             </div>
 
             <div className="p-2.5 rounded-xl bg-[#1F1A14]/[0.03] border border-[#1F1A14]/10">
               <span className="block font-mono text-[10px] uppercase tracking-wider text-[#6B6254] font-bold">
-                12th Foundation
+                Education
               </span>
               <span className="font-display font-black text-xs sm:text-sm text-[#5E6B3A]">
-                Narayana Jr College, Kurnool
+                VIT-AP University (CSE)
               </span>
             </div>
           </div>

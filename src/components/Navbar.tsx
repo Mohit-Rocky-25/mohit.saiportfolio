@@ -37,7 +37,7 @@ export function Navbar() {
               Work
             </a>
             <a href="#interests" className="hover:opacity-75 transition-opacity">
-              Interests
+              Approach
             </a>
             <a href="#skills" className="hover:opacity-75 transition-opacity">
               Skills
