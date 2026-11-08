@@ -106,11 +106,17 @@ async function main() {
     snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/interests-1440.png', Buffer.from(snap.result.data, 'base64'));
 
-    // Skills
+    // Skills - Mode 1: 3D Orbit Sphere
     await send('Runtime.evaluate', { expression: `document.getElementById('skills').scrollIntoView({ behavior: 'instant' })` });
     await new Promise(r => setTimeout(r, 1000));
     snap = await send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync('screenshots/skills-1440.png', Buffer.from(snap.result.data, 'base64'));
+    writeFileSync('screenshots/skills-sphere-1440.png', Buffer.from(snap.result.data, 'base64'));
+
+    // Skills - Mode 2: 3D Perspective Ribbons
+    await send('Runtime.evaluate', { expression: `document.querySelectorAll('#skills button')[1].click()` });
+    await new Promise(r => setTimeout(r, 800));
+    snap = await send('Page.captureScreenshot', { format: 'png' });
+    writeFileSync('screenshots/skills-ribbons-1440.png', Buffer.from(snap.result.data, 'base64'));
 
     // 2. CAPTURE AT 1366x768 (Verify no clipping)
     await send('Emulation.setDeviceMetricsOverride', {
