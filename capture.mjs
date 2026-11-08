@@ -82,14 +82,15 @@ async function main() {
     snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/work-repopilot-1440.png', Buffer.from(snap.result.data, 'base64'));
 
-    // Work Section: Scroll down to HireFlow and UniLang
-    await send('Runtime.evaluate', { expression: `window.scrollBy(0, 750)` });
-    await new Promise(r => setTimeout(r, 800));
+    // Work Section: Click HireFlow tab
+    await send('Runtime.evaluate', { expression: `document.querySelectorAll('#work button')[3].click()` });
+    await new Promise(r => setTimeout(r, 600));
     snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/work-hireflow-1440.png', Buffer.from(snap.result.data, 'base64'));
 
-    await send('Runtime.evaluate', { expression: `window.scrollBy(0, 800)` });
-    await new Promise(r => setTimeout(r, 800));
+    // Work Section: Click UniLang tab
+    await send('Runtime.evaluate', { expression: `document.querySelectorAll('#work button')[4].click()` });
+    await new Promise(r => setTimeout(r, 600));
     snap = await send('Page.captureScreenshot', { format: 'png' });
     writeFileSync('screenshots/work-unilang-1440.png', Buffer.from(snap.result.data, 'base64'));
 
