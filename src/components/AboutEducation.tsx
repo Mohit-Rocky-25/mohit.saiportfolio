@@ -6,9 +6,9 @@ export function AboutEducation() {
       {/* Section Rail Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[#1F1A14]/14 pb-6 mb-16">
         <div className="flex items-center gap-3 font-text text-[13px] text-[#B4441F]">
-          <span className="font-mono text-xs">03</span>
+          <span className="font-mono text-xs font-extrabold">02</span>
           <span>/</span>
-          <span>About and education</span>
+          <span className="font-bold">About and education</span>
         </div>
         <p className="font-text text-[13px] text-[#6B6254] mt-2 sm:mt-0">
           Academic timeline and engineering principles

@@ -30,11 +30,11 @@ export function Navbar() {
         {/* Right Nav Links */}
         <div style={{ color: 'var(--nav-ink)' }} className="flex items-center gap-6 sm:gap-8 text-sm font-text">
           <div className="hidden md:flex items-center gap-6 font-bold">
-            <a href="#work" className="hover:opacity-75 transition-opacity">
-              Work
-            </a>
             <a href="#about" className="hover:opacity-75 transition-opacity">
               About
+            </a>
+            <a href="#work" className="hover:opacity-75 transition-opacity">
+              Work
             </a>
             <a href="#interests" className="hover:opacity-75 transition-opacity">
               Interests

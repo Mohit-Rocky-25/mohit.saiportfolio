@@ -130,7 +130,7 @@ export function SelectedWork() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline border-b border-[#1F1A14]/14 pb-6 mb-16 sm:mb-20">
         <div className="space-y-2">
           <div className="flex items-center gap-3 font-text text-[13px] text-[#B4441F] font-bold">
-            <span className="font-mono text-xs">02</span>
+            <span className="font-mono text-xs font-extrabold">03</span>
             <span>/</span>
             <span>Selected Work</span>
           </div>

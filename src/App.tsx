@@ -59,8 +59,8 @@ export function App() {
         }`}
       >
         <Hero />
-        <SelectedWork />
         <AboutEducation />
+        <SelectedWork />
         <Interests />
         <SkillsTypography />
       </main>
