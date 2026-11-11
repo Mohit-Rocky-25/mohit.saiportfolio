@@ -2,6 +2,7 @@
   "name": "mohit.saiportfolio",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://mohitsaiportfolio.vercel.app",
   "type": "module",
   "scripts": {
     "dev": "vite",

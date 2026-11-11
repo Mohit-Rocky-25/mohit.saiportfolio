@@ -2,6 +2,12 @@
 
 > Minimalistic, high-performance personal portfolio engineered with React, TypeScript, Vite, Tailwind CSS, and Framer Motion.
 
+[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-mohitsaiportfolio.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://mohitsaiportfolio.vercel.app)
+
+🌐 **Live Website**: [https://mohitsaiportfolio.vercel.app](https://mohitsaiportfolio.vercel.app)
+
+---
+
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
